@@ -7,7 +7,7 @@ const NoItems = () => {
   return (
     <View style={noItemsView}>
       <Text style={noItemsText}>No items.</Text>
-      <TouchableOpacity style={addStuff}>
+      <TouchableOpacity style={addStuff} onPress={() => {}}>
         <Text style={addStuffText}>Add stuff</Text>
       </TouchableOpacity>
     </View>

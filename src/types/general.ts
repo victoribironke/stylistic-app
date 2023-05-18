@@ -7,6 +7,10 @@ export type ItemProps = {
 };
 
 export type ItemsProps = {
-  filter: string;
   data: ItemProps[];
+};
+
+export type ScrollViewItemProps = {
+  data: ItemProps[];
+  text: string;
 };

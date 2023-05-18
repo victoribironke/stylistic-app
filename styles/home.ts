@@ -1,10 +1,11 @@
 import { StatusBar, StyleSheet } from "react-native";
 import { COLORS } from "./colors";
+import { FONTS } from "./fonts";
 
 export const homeStyles = StyleSheet.create({
   container: {
     flex: 1,
-    fontFamily: "gt-regular",
+    fontFamily: FONTS.regular,
     padding: 12,
     marginTop: StatusBar.currentHeight,
     gap: 24,
@@ -19,11 +20,11 @@ export const homeStyles = StyleSheet.create({
     gap: 2,
   },
   welcomeText: {
-    fontFamily: "gt-regular",
+    fontFamily: FONTS.regular,
     fontSize: 18,
   },
   nameText: {
-    fontFamily: "gt-medium",
+    fontFamily: FONTS.medium,
     fontSize: 20,
   },
   profileView: {},
@@ -41,11 +42,11 @@ export const homeStyles = StyleSheet.create({
     gap: 2,
   },
   creditAmount: {
-    fontFamily: "gt-medium",
+    fontFamily: FONTS.medium,
     fontSize: 30,
   },
   creditText: {
-    fontFamily: "gt-regular",
+    fontFamily: FONTS.regular,
     fontSize: 16,
   },
   buyCredits: {
@@ -56,7 +57,7 @@ export const homeStyles = StyleSheet.create({
   },
   buyCreditsText: {
     fontSize: 18,
-    fontFamily: "gt-regular",
+    fontFamily: FONTS.regular,
     color: "white",
   },
   closetView: {
@@ -66,7 +67,7 @@ export const homeStyles = StyleSheet.create({
     width: "100%",
   },
   itemsText: {
-    fontFamily: "gt-medium",
+    fontFamily: FONTS.medium,
     fontSize: 23,
   },
   closetContainer: {
@@ -87,7 +88,7 @@ export const homeStyles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
   },
-  filterText: { fontSize: 16, fontFamily: "gt-regular" },
+  filterText: { fontSize: 16, fontFamily: FONTS.regular },
   dropDown: {
     borderRadius: 8,
     borderWidth: 1,
@@ -101,35 +102,34 @@ export const homeStyles = StyleSheet.create({
     overflow: "hidden",
   },
   dropDownText: {
-    fontFamily: "gt-regular",
+    fontFamily: FONTS.regular,
     fontSize: 16,
     width: "100%",
     padding: 8,
     textAlign: "center",
   },
   noItemsView: {
-    height: 200,
+    height: 300,
     zIndex: -15,
     alignItems: "center",
     justifyContent: "center",
     gap: 20,
   },
-  noItemsText: { fontFamily: "gt-regular", fontSize: 18 },
+  noItemsText: { fontFamily: FONTS.regular, fontSize: 18 },
   addStuff: {
     backgroundColor: COLORS.green,
     borderRadius: 8,
-    paddingHorizontal: 20,
-    paddingVertical: 12,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
   },
   addStuffText: {
     fontSize: 18,
-    fontFamily: "gt-regular",
+    fontFamily: FONTS.regular,
     color: "white",
   },
   itemsView: {
     width: "100%",
     height: 500,
-    flexDirection: "row",
     zIndex: -15,
   },
   itemView: {
@@ -137,11 +137,11 @@ export const homeStyles = StyleSheet.create({
     borderColor: COLORS.deepOrange,
     padding: 6,
     gap: 8,
-    width: "49%",
     borderRadius: 10,
+    marginRight: 10,
   },
   itemImage: {
-    width: "100%",
+    width: 130,
     aspectRatio: "1/1",
     borderRadius: 5,
   },
@@ -155,10 +155,18 @@ export const homeStyles = StyleSheet.create({
     borderRadius: 100,
   },
   typeStyle: {
-    fontFamily: "gt-regular",
+    fontFamily: FONTS.regular,
     fontSize: 16,
   },
   typeView: {
     gap: 3,
+  },
+  scrollItemView: { gap: 8, marginBottom: 15 },
+  scrollView: {
+    gap: 4,
+  },
+  scrollItemText: {
+    fontFamily: FONTS.medium,
+    fontSize: 20,
   },
 });

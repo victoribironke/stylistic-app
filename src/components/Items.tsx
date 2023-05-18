@@ -1,38 +1,42 @@
-import { FlatList, View } from "react-native";
+import { FlatList, ScrollView, View, Text } from "react-native";
 import { homeStyles } from "../../styles/home";
 import { ItemProps, ItemsProps } from "../types/general";
+import { splitArr } from "../utils/helpers";
 import Item from "./Item";
+import ScrollViewItem from "./ScrollViewItem";
 
-const Items = ({ filter, data }: ItemsProps) => {
+const Items = ({ data }: ItemsProps) => {
   const { itemsView } = homeStyles;
-
-  const separator = () => {
-    return <View style={{ padding: 4 }}></View>;
-  };
-
-  const renderItem = ({ item }: { item: ItemProps }) => (
-    <Item
-      colors={item.colors}
-      imageURL={item.imageURL}
-      subType={item.subType}
-      type={item.type}
-    />
-  );
+  const {
+    topsArr,
+    socksArr,
+    shortsArr,
+    trousersArr,
+    footwearArr,
+    headwearArr,
+  } = splitArr(data);
 
   return (
-    <View style={itemsView}>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item, i) => i.toString()}
-        numColumns={2}
-        horizontal={false}
-        ItemSeparatorComponent={separator}
-        showsVerticalScrollIndicator={false}
-        columnWrapperStyle={{ justifyContent: "space-between" }}
-        showsHorizontalScrollIndicator={false}
-      />
-    </View>
+    <ScrollView style={itemsView} showsVerticalScrollIndicator={false}>
+      {topsArr.length > 0 ? (
+        <ScrollViewItem text="Tops" data={topsArr} />
+      ) : null}
+      {socksArr.length > 0 ? (
+        <ScrollViewItem text="Socks" data={socksArr} />
+      ) : null}
+      {shortsArr.length > 0 ? (
+        <ScrollViewItem text="Shorts" data={shortsArr} />
+      ) : null}
+      {trousersArr.length > 0 ? (
+        <ScrollViewItem text="Trousers" data={trousersArr} />
+      ) : null}
+      {footwearArr.length > 0 ? (
+        <ScrollViewItem text="Footwear" data={footwearArr} />
+      ) : null}
+      {headwearArr.length > 0 ? (
+        <ScrollViewItem text="Headwear" data={headwearArr} />
+      ) : null}
+    </ScrollView>
   );
 };
 
