@@ -2,6 +2,7 @@ import { useFonts } from "expo-font";
 import { useEffect, useState } from "react";
 import Home from "./src/screens/Home";
 import * as SplashScreen from "expo-splash-screen";
+import BuyCredits from "./src/screens/BuyCredits";
 
 // SplashScreen.preventAutoHideAsync();
 
@@ -18,6 +19,7 @@ const App = () => {
   return (
     <>
       <Home />
+      {/* <BuyCredits /> */}
     </>
   );
 };

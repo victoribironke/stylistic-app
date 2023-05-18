@@ -14,3 +14,12 @@ export type ScrollViewItemProps = {
   data: ItemProps[];
   text: string;
 };
+
+export type OtherHeaderProps = { title: string };
+
+export type CreditCategoryProps = {
+  isSelected?: boolean;
+  quantity: number;
+  cost: number;
+  onPress?: () => void;
+};

@@ -1,6 +1,5 @@
 import { StatusBar, StyleSheet } from "react-native";
-import { COLORS } from "./colors";
-import { FONTS } from "./fonts";
+import { COLORS, FONTS } from "./general";
 
 export const homeStyles = StyleSheet.create({
   container: {

@@ -1,3 +1,8 @@
+export const FONTS = {
+  regular: "gt-regular",
+  medium: "gt-medium",
+};
+
 export const COLORS = {
   primary: "#FFEF00",
   blue: "#3F5EFB",
