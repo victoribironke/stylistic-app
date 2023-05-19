@@ -1,12 +1,15 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
-import { COLORS } from "../../styles/colors";
+import { Text, TouchableOpacity, View, SafeAreaView } from "react-native";
+import { COLORS } from "../../styles/general";
 import { homeStyles } from "../../styles/home";
 import { clothingTypes } from "../utils/clothing";
+// import { useNavigation } from "@react-navigation/native";
 import { getStyles } from "../utils/helpers";
 
 const Account = () => {
+  // const navigation = useNavigation();
+
   const [isHidden, setIsHidden] = useState(true);
   const [filter, setFilter] = useState("All");
 
@@ -33,7 +36,7 @@ const Account = () => {
   );
 
   return (
-    <View>
+    <SafeAreaView>
       <TouchableOpacity
         style={filterView}
         onPress={() => setIsHidden((prev) => !prev)}
@@ -56,7 +59,7 @@ const Account = () => {
       >
         {["All", ...clothingTypes].map(renderFilters)}
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

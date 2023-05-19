@@ -1,7 +1,10 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { homeStyles } from "../../styles/home";
+import { useNavigation } from "@react-navigation/native";
 
 const Credits = () => {
+  const navigation = useNavigation();
+
   const {
     credits,
     creditAmount,
@@ -18,7 +21,10 @@ const Credits = () => {
         <Text style={creditText}>credits left</Text>
       </View>
 
-      <TouchableOpacity onPress={() => {}} style={buyCredits}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Buy Credits")}
+        style={buyCredits}
+      >
         <Text style={buyCreditsText}>Buy credits</Text>
       </TouchableOpacity>
     </View>

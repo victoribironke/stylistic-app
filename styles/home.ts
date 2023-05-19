@@ -128,7 +128,8 @@ export const homeStyles = StyleSheet.create({
   },
   itemsView: {
     width: "100%",
-    height: 500,
+    // height: 500,
+    marginBottom: 150,
     zIndex: -15,
   },
   itemView: {

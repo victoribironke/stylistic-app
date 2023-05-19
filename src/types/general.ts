@@ -1,3 +1,5 @@
+import { BottomTabNavigationOptions } from "@react-navigation/bottom-tabs";
+
 export type ItemProps = {
   colors: string[];
   type: string;
@@ -22,4 +24,9 @@ export type CreditCategoryProps = {
   quantity: number;
   cost: number;
   onPress?: () => void;
+};
+
+export type IconProps = {
+  isFocused: boolean;
+  label: string;
 };
