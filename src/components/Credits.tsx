@@ -3,7 +3,7 @@ import { homeStyles } from "../../styles/home";
 import { useNavigation } from "@react-navigation/native";
 
 const Credits = () => {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   const {
     credits,
@@ -22,7 +22,7 @@ const Credits = () => {
       </View>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate("Buy Credits")}
+        onPress={() => navigate("Buy Credits")}
         style={buyCredits}
       >
         <Text style={buyCreditsText}>Buy credits</Text>

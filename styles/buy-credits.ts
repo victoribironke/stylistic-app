@@ -8,12 +8,6 @@ export const buyCreditsStyles = StyleSheet.create({
     marginTop: StatusBar.currentHeight,
     gap: 24,
   },
-  otherHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 15,
-  },
-  otherHeaderText: { fontFamily: FONTS.medium, fontSize: 22 },
   categoriesView: {
     gap: 15,
   },

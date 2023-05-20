@@ -1,13 +1,13 @@
 import { Text, View } from "react-native";
-import { buyCreditsStyles } from "../../styles/buy-credits";
 import { OtherHeaderProps } from "../types/general";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { otherHeaderStyles } from "../../styles/general";
 
 const OtherHeader = ({ title }: OtherHeaderProps) => {
-  const { otherHeader, otherHeaderText } = buyCreditsStyles;
+  const { otherHeader, otherHeaderText } = otherHeaderStyles;
 
-  const navigation = useNavigation();
+  const { goBack } = useNavigation();
 
   return (
     <View style={otherHeader}>
@@ -15,7 +15,7 @@ const OtherHeader = ({ title }: OtherHeaderProps) => {
         name="keyboard-arrow-left"
         size={42}
         color="black"
-        onPress={() => navigation.goBack()}
+        onPress={() => goBack()}
       />
 
       <Text style={otherHeaderText}>{title}</Text>

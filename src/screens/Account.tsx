@@ -1,65 +1,64 @@
-import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
-import { Text, TouchableOpacity, View, SafeAreaView } from "react-native";
-import { COLORS } from "../../styles/general";
+import { Text, TouchableOpacity, View, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { accountStyles } from "../../styles/account";
+import Select from "../components/Select";
+import OtherHeader from "../components/OtherHeader";
+import { user } from "../atoms/atoms";
+import { useRecoilValue } from "recoil";
+import { profilePlaceholder } from "../utils/image-paths";
 import { homeStyles } from "../../styles/home";
-import { clothingTypes } from "../utils/clothing";
-// import { useNavigation } from "@react-navigation/native";
-import { getStyles } from "../utils/helpers";
+import { randomString } from "../utils/helpers";
 
 const Account = () => {
-  // const navigation = useNavigation();
+  const userData = useRecoilValue(user);
 
-  const [isHidden, setIsHidden] = useState(true);
-  const [filter, setFilter] = useState("All");
+  const {
+    container,
+    detailsView,
+    textView,
+    emailText,
+    nameText,
+    editText,
+    recSettings,
+    save,
+    saveText,
+  } = accountStyles;
+  const { profileImage } = homeStyles;
 
-  const { filterView, filterText, dropDown, dropDownText } = homeStyles;
+  let imageURI;
 
-  const filterItems = (cloth: string) => {
-    setFilter(cloth);
-    setIsHidden((prev) => !prev);
+  if (userData.imageURL !== "") {
+    imageURI = { uri: userData.imageURL };
+  }
+
+  imageURI = {
+    uri: profilePlaceholder(randomString()),
   };
 
-  const renderFilters = (cloth: string, i: number) => (
-    <Text
-      key={i}
-      style={[
-        {
-          backgroundColor: i % 2 === 0 ? COLORS.gray : "white",
-        },
-        dropDownText,
-      ]}
-      onPress={() => filterItems(cloth)}
-    >
-      {cloth}
-    </Text>
-  );
-
   return (
-    <SafeAreaView>
-      <TouchableOpacity
-        style={filterView}
-        onPress={() => setIsHidden((prev) => !prev)}
-      >
-        <Text style={filterText}>Filter</Text>
-        <MaterialIcons
-          name="keyboard-arrow-down"
-          size={24}
-          color="black"
-          style={{
-            transform: [{ rotate: isHidden ? "0deg" : "180deg" }],
-          }}
-        />
-      </TouchableOpacity>
-      <View
-        style={[
-          isHidden ? getStyles("none").show : getStyles("flex").show,
-          dropDown,
-        ]}
-      >
-        {["All", ...clothingTypes].map(renderFilters)}
+    <View style={container}>
+      <OtherHeader title="Account" />
+
+      <View style={detailsView}>
+        <Image source={imageURI} style={profileImage} />
+        <View style={textView}>
+          <Text style={nameText}>Victor Ibironke</Text>
+          <Text style={emailText}>ibikidsfc56@gmail.com</Text>
+        </View>
       </View>
-    </SafeAreaView>
+
+      <Text style={editText}>
+        Change your name and profile picture on your google account.
+      </Text>
+
+      <View style={recSettings}>
+        <Select arr={["1", "2"]} selectedIndex={1} />
+        <TouchableOpacity style={save}>
+          <Text style={saveText}>Save</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 

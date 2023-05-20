@@ -1,20 +1,18 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, TouchableOpacity } from "react-native";
 import { homeStyles } from "../../styles/home";
+import { useNavigation } from "@react-navigation/native";
 import { profilePlaceholder } from "../utils/image-paths";
+import { randomString } from "../utils/helpers";
+// import { v4 } from "uuid";
 
 const HomeHeader = () => {
-  const {
-    header,
-    leftHeader,
-    welcomeText,
-    nameText,
-    profileImage,
-    profileView,
-  } = homeStyles;
+  const { header, leftHeader, welcomeText, nameText, profileImage } =
+    homeStyles;
 
-  const name = "Victor";
+  const { navigate } = useNavigation();
+
   const imageURI = {
-    uri: profilePlaceholder(name),
+    uri: profilePlaceholder(randomString()),
   };
 
   return (
@@ -24,12 +22,9 @@ const HomeHeader = () => {
         <Text style={nameText}>Victor Ibironke</Text>
       </View>
 
-      {/* Check if the image is from dicebear or from google, if 
-       if from dicebear, don't round the edges, else round the edges
-       it should also be wrapped in a button or touchableopacity to lead to the account screen when tapped
-      */}
-
-      <Image source={imageURI} style={profileImage} />
+      <TouchableOpacity onPress={() => navigate("Account")}>
+        <Image source={imageURI} style={profileImage} />
+      </TouchableOpacity>
     </View>
   );
 };

@@ -1,8 +1,4 @@
-import { StyleSheet } from "react-native";
 import { ItemProps } from "../types/general";
-
-export const getStyles = (display: "flex" | "none") =>
-  StyleSheet.create({ show: { display } });
 
 export const splitArr = (arr: ItemProps[]) => {
   const topsArr: ItemProps[] = [];
@@ -29,4 +25,16 @@ export const splitArr = (arr: ItemProps[]) => {
     footwearArr,
     headwearArr,
   };
+};
+
+export const randomString = () => {
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+  let result = " ";
+  const charactersLength = characters.length;
+  for (let i = 0; i < 10; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+  return result;
 };

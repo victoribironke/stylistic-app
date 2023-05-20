@@ -1,5 +1,3 @@
-import { BottomTabNavigationOptions } from "@react-navigation/bottom-tabs";
-
 export type ItemProps = {
   colors: string[];
   type: string;
@@ -26,7 +24,7 @@ export type CreditCategoryProps = {
   onPress?: () => void;
 };
 
-export type IconProps = {
-  isFocused: boolean;
-  label: string;
+export type SelectProps = {
+  arr: string[];
+  selectedIndex: number; // it means the index of the default item in the array
 };
