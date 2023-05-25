@@ -1,11 +1,10 @@
 import { user } from "../atoms/atoms";
 import { homeStyles } from "../../styles/home";
-import { useNavigation } from "@react-navigation/native";
 import { useRecoilValue } from "recoil";
 import { Text, TouchableOpacity, View } from "react-native";
+import { openBrowserAsync } from "expo-web-browser";
 
 const Credits = () => {
-  const { navigate } = useNavigation();
   const userData = useRecoilValue(user);
 
   const {
@@ -25,7 +24,11 @@ const Credits = () => {
       </View>
 
       <TouchableOpacity
-        onPress={() => navigate("Buy Credits")}
+        onPress={() =>
+          openBrowserAsync(
+            "https://stylistic.lemonsqueezy.com/checkout?cart=5f6aa997-6519-465b-af9f-b90120bbc44a"
+          )
+        }
         style={buyCredits}
       >
         <Text style={buyCreditsText}>Buy credits</Text>

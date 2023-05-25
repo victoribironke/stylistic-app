@@ -24,8 +24,6 @@ const Home = () => {
 
     const unsubAuthState = onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigate("Home Screen");
-
         unsubSnapshot = onSnapshot(doc(db, "users", user.uid), (doc) => {
           const data = doc.data();
 
@@ -37,9 +35,11 @@ const Home = () => {
             credits: data!.credits,
           });
         });
+
+        navigate("Home Screen");
       } else {
-        navigate("Login Signup");
         unsubSnapshot();
+        navigate("Login Signup");
       }
     });
 
