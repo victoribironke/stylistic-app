@@ -1,7 +1,7 @@
-import { Text, TouchableOpacity, View } from "react-native";
-import { buyCreditsStyles } from "../../styles/buy-credits";
 import { COLORS } from "../../styles/general";
+import { buyCreditsStyles } from "../../styles/buy-credits";
 import { CreditCategoryProps } from "../types/general";
+import { Text, TouchableOpacity, View } from "react-native";
 
 const CreditCategory = ({
   isSelected,

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
-import { COLORS, dropDownStyles } from "../../styles/general";
-import { MaterialIcons } from "@expo/vector-icons";
 import { SelectProps } from "../types/general";
+import { MaterialIcons } from "@expo/vector-icons";
+import { COLORS, dropDownStyles } from "../../styles/general";
+import { Text, TouchableOpacity, View } from "react-native";
 
 const Select = ({ arr, selectedIndex }: SelectProps) => {
   const [isHidden, setIsHidden] = useState(true);

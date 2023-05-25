@@ -19,6 +19,7 @@ export const COLORS = {
 
 export const otherHeaderStyles = StyleSheet.create({
   otherHeader: {
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
     gap: 15,

@@ -1,6 +1,6 @@
-import { Text, TouchableOpacity, View } from "react-native";
 import { homeStyles } from "../../styles/home";
 import { useNavigation } from "@react-navigation/native";
+import { Text, TouchableOpacity, View } from "react-native";
 
 const NoItems = () => {
   const { noItemsView, noItemsText, addStuff, addStuffText } = homeStyles;

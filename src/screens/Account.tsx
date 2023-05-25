@@ -1,17 +1,18 @@
-import { useState } from "react";
-import { Text, TouchableOpacity, View, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { accountStyles } from "../../styles/account";
 import Select from "../components/Select";
 import OtherHeader from "../components/OtherHeader";
+import { app } from "../firebase/firebase";
 import { user } from "../atoms/atoms";
-import { useRecoilValue } from "recoil";
-import { profilePlaceholder } from "../utils/image-paths";
 import { homeStyles } from "../../styles/home";
-import { randomString } from "../utils/helpers";
+import { accountStyles } from "../../styles/account";
+import { getAuth, signOut } from "firebase/auth";
+import { useRecoilValue, useResetRecoilState } from "recoil";
+import { Text, TouchableOpacity, View, Image } from "react-native";
+
+const auth = getAuth(app);
 
 const Account = () => {
   const userData = useRecoilValue(user);
+  const resetUserState = useResetRecoilState(user);
 
   const {
     container,
@@ -19,21 +20,19 @@ const Account = () => {
     textView,
     emailText,
     nameText,
-    editText,
     recSettings,
     save,
     saveText,
   } = accountStyles;
   const { profileImage } = homeStyles;
 
-  let imageURI;
+  const imageURI = {
+    uri: userData.imageURL,
+  };
 
-  if (userData.imageURL !== "") {
-    imageURI = { uri: userData.imageURL };
-  }
-
-  imageURI = {
-    uri: profilePlaceholder(randomString()),
+  const signOutUser = () => {
+    resetUserState();
+    signOut(auth);
   };
 
   return (
@@ -43,14 +42,10 @@ const Account = () => {
       <View style={detailsView}>
         <Image source={imageURI} style={profileImage} />
         <View style={textView}>
-          <Text style={nameText}>Victor Ibironke</Text>
-          <Text style={emailText}>ibikidsfc56@gmail.com</Text>
+          <Text style={nameText}>{userData.name}</Text>
+          <Text style={emailText}>{userData.email}</Text>
         </View>
       </View>
-
-      <Text style={editText}>
-        Change your name and profile picture on your google account.
-      </Text>
 
       <View style={recSettings}>
         <Select arr={["1", "2"]} selectedIndex={1} />
@@ -58,6 +53,10 @@ const Account = () => {
           <Text style={saveText}>Save</Text>
         </TouchableOpacity>
       </View>
+
+      <TouchableOpacity onPress={signOutUser}>
+        <Text>Sign out</Text>
+      </TouchableOpacity>
     </View>
   );
 };

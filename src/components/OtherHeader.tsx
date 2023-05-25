@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
-import { OtherHeaderProps } from "../types/general";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { OtherHeaderProps } from "../types/general";
 import { otherHeaderStyles } from "../../styles/general";
 
 const OtherHeader = ({ title }: OtherHeaderProps) => {
@@ -15,7 +15,7 @@ const OtherHeader = ({ title }: OtherHeaderProps) => {
         name="keyboard-arrow-left"
         size={42}
         color="black"
-        onPress={() => goBack()}
+        onPress={goBack}
       />
 
       <Text style={otherHeaderText}>{title}</Text>

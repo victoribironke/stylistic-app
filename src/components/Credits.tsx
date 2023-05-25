@@ -1,9 +1,12 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { user } from "../atoms/atoms";
 import { homeStyles } from "../../styles/home";
 import { useNavigation } from "@react-navigation/native";
+import { useRecoilValue } from "recoil";
+import { Text, TouchableOpacity, View } from "react-native";
 
 const Credits = () => {
   const { navigate } = useNavigation();
+  const userData = useRecoilValue(user);
 
   const {
     credits,
@@ -17,7 +20,7 @@ const Credits = () => {
   return (
     <View style={creditContainer}>
       <View style={credits}>
-        <Text style={creditAmount}>100</Text>
+        <Text style={creditAmount}>{userData.credits}</Text>
         <Text style={creditText}>credits left</Text>
       </View>
 

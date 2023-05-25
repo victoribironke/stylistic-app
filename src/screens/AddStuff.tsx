@@ -1,6 +1,6 @@
-import { Text, View } from "react-native";
-import { addStuffStyles } from "../../styles/add-stuff";
 import OtherHeader from "../components/OtherHeader";
+import { View } from "react-native";
+import { addStuffStyles } from "../../styles/add-stuff";
 
 const AddStuff = () => {
   const { container } = addStuffStyles;

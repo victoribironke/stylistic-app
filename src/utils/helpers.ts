@@ -28,13 +28,22 @@ export const splitArr = (arr: ItemProps[]) => {
 };
 
 export const randomString = () => {
+  let result = "";
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
-  let result = " ";
   const charactersLength = characters.length;
+
   for (let i = 0; i < 10; i++) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
 
   return result;
+};
+
+export const validateEmail = (email: string) => {
+  const isValid =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+      email
+    );
+
+  return isValid;
 };

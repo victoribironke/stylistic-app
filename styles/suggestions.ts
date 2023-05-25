@@ -1,5 +1,4 @@
 import { StyleSheet, StatusBar } from "react-native";
-import { COLORS, FONTS } from "./general";
 
 export const suggestionStyles = StyleSheet.create({
   container: {

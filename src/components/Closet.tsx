@@ -1,13 +1,12 @@
-import { Text, TouchableOpacity, View } from "react-native";
-import { homeStyles } from "../../styles/home";
-import { useRecoilState } from "recoil";
-import { ItemProps } from "../types/general";
 import Items from "./Items";
 import NoItems from "./NoItems";
-import { clothData } from "../utils/data";
-import { useNavigation } from "@react-navigation/native";
-import { AntDesign } from "@expo/vector-icons";
 import { user } from "../atoms/atoms";
+import { clothData } from "../utils/data";
+import { AntDesign } from "@expo/vector-icons";
+import { homeStyles } from "../../styles/home";
+import { useNavigation } from "@react-navigation/native";
+import { useRecoilState } from "recoil";
+import { Text, TouchableOpacity, View } from "react-native";
 
 const Closet = () => {
   const {
@@ -42,7 +41,7 @@ const Closet = () => {
         </TouchableOpacity>
       </View>
 
-      {closetItems === null ? <NoItems /> : <Items data={clothData} />}
+      {clothData === null ? <NoItems /> : <Items data={clothData} />}
     </View>
   );
 };

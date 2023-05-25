@@ -1,7 +1,7 @@
-import { ScrollView, Text, View } from "react-native";
+import Item from "./Item";
 import { homeStyles } from "../../styles/home";
 import { ScrollViewItemProps } from "../types/general";
-import Item from "./Item";
+import { ScrollView, Text, View } from "react-native";
 
 const ScrollViewItem = ({ data, text }: ScrollViewItemProps) => {
   const { scrollView, scrollItemView, scrollItemText } = homeStyles;

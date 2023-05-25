@@ -25,7 +25,6 @@ export const accountStyles = StyleSheet.create({
     fontFamily: FONTS.regular,
     fontSize: 16,
   },
-  editText: { fontFamily: FONTS.regular, lineHeight: 18, color: COLORS.grey },
   recSettings: {
     flexDirection: "row",
     gap: 20,
