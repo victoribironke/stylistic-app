@@ -20,29 +20,30 @@ const Home = () => {
   const [userData, setUserData] = useRecoilState(user);
 
   useEffect(() => {
+    let unsubSnapshot: () => void;
+
     const unsubAuthState = onAuthStateChanged(auth, (user) => {
-      if (user) navigate("Home Screen");
-      else navigate("Login Signup");
+      if (user) {
+        navigate("Home Screen");
+
+        unsubSnapshot = onSnapshot(doc(db, "users", user.uid), (doc) => {
+          const data = doc.data();
+
+          setUserData({
+            ...userData,
+            email: data!.email,
+            imageURL: data!.imageURL,
+            name: data!.name,
+            credits: data!.credits,
+          });
+        });
+      } else {
+        navigate("Login Signup");
+        unsubSnapshot();
+      }
     });
 
-    const unsubSnapshot = onSnapshot(doc(db, "users", userData.uid), (doc) => {
-      const data = doc.data();
-
-      setUserData({
-        ...userData,
-        email: data!.email,
-        imageURL: data!.imageURL,
-        name: data!.name,
-        credits: data!.credits,
-      });
-    });
-
-    const unsub = () => {
-      unsubAuthState();
-      unsubSnapshot();
-    };
-
-    return unsub;
+    return unsubAuthState;
   }, []);
 
   return (

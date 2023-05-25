@@ -39,6 +39,8 @@ const Signup = () => {
           credits: 100,
         });
 
+        await setDoc(doc(db, "user-mappings", user.email!), { uid: user.uid });
+
         setUserData({ ...userData, uid: user.uid });
       } catch (e) {
         setError("Email already in use");
