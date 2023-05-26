@@ -1,6 +1,6 @@
 import { ItemProps } from "../types/general";
 import { homeStyles } from "../../styles/home";
-import { selectedItem } from "../atoms/atoms";
+import { selectedItemState } from "../atoms/atoms";
 import { useNavigation } from "@react-navigation/native";
 import { useSetRecoilState } from "recoil";
 import { Image, Text, View, TouchableOpacity } from "react-native";
@@ -9,7 +9,7 @@ const Item = ({ imageURL, colors, subType, type }: ItemProps) => {
   const { itemView, itemImage, color, colorsView, typeStyle, typeView } =
     homeStyles;
   const imageURI = { uri: imageURL };
-  const setSelectedItem = useSetRecoilState(selectedItem);
+  const setSelectedItem = useSetRecoilState(selectedItemState);
 
   const { navigate } = useNavigation();
 

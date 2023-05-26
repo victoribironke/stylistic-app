@@ -1,6 +1,6 @@
 import Items from "./Items";
 import NoItems from "./NoItems";
-import { user } from "../atoms/atoms";
+import { userState } from "../atoms/atoms";
 import { clothData } from "../utils/data";
 import { AntDesign } from "@expo/vector-icons";
 import { homeStyles } from "../../styles/home";
@@ -19,7 +19,7 @@ const Closet = () => {
   } = homeStyles;
   const { navigate } = useNavigation();
 
-  const [{ closetItems }, setItems] = useRecoilState(user);
+  const [{ closetItems }, setItems] = useRecoilState(userState);
 
   return (
     <View style={closetContainer}>

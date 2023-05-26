@@ -1,4 +1,4 @@
-import { user } from "../atoms/atoms";
+import { userState } from "../atoms/atoms";
 import { homeStyles } from "../../styles/home";
 import { useNavigation } from "@react-navigation/native";
 import { useRecoilValue } from "recoil";
@@ -7,7 +7,7 @@ import { Text, View, Image, TouchableOpacity } from "react-native";
 const HomeHeader = () => {
   const { header, leftHeader, welcomeText, nameText, profileImage } =
     homeStyles;
-  const userData = useRecoilValue(user);
+  const userData = useRecoilValue(userState);
 
   const { navigate } = useNavigation();
 

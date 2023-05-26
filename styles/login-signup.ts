@@ -20,17 +20,8 @@ export const loginSignupStyles = StyleSheet.create({
     paddingBottom: 4,
     paddingHorizontal: 2,
   },
-  formView: { width: "80%", gap: 10 },
-  input: {
-    borderWidth: 1,
-    borderColor: COLORS.deepOrange,
-    width: "100%",
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 8,
-    fontFamily: FONTS.medium,
-    fontSize: 18,
-  },
+  passwordView: { alignItems: "center", justifyContent: "center" },
+  passwordIcon: { position: "absolute", right: 15 },
   actionButton: {
     backgroundColor: "white",
     paddingVertical: 12,
@@ -42,6 +33,11 @@ export const loginSignupStyles = StyleSheet.create({
   actionText: { fontFamily: FONTS.medium, fontSize: 18 },
   errorText: {
     color: "red",
+    fontSize: 16,
+    fontFamily: FONTS.medium,
+  },
+  loadingText: {
+    color: COLORS.deepOrange,
     fontSize: 16,
     fontFamily: FONTS.medium,
   },

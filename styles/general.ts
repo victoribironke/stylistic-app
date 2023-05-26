@@ -62,3 +62,17 @@ export const dropDownStyles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+export const formStyles = StyleSheet.create({
+  formView: { width: "80%", gap: 10 },
+  input: {
+    borderWidth: 1,
+    borderColor: COLORS.deepOrange,
+    width: "100%",
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 8,
+    fontFamily: FONTS.medium,
+    fontSize: 18,
+  },
+});

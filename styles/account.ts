@@ -42,4 +42,12 @@ export const accountStyles = StyleSheet.create({
     fontFamily: FONTS.regular,
     color: "white",
   },
+  signOutButton: {
+    backgroundColor: "red",
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  signOutText: { fontFamily: FONTS.regular, color: "white", fontSize: 16 },
 });

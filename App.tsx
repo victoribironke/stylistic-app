@@ -28,12 +28,12 @@ const App = () => {
           <Stack.Screen
             name="Home Screen"
             component={Home}
-            options={{ headerShown: false, animation: "slide_from_left" }}
+            options={{ headerShown: false, animation: "slide_from_right" }}
           />
           <Stack.Screen
             name="Login Signup"
             component={LoginSignup}
-            options={{ headerShown: false, animation: "slide_from_right" }}
+            options={{ headerShown: false, animation: "slide_from_left" }}
           />
           <Stack.Screen
             name="Suggestions"

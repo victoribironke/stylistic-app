@@ -1,6 +1,6 @@
 import { app } from "../firebase/firebase";
 import { useState } from "react";
-import { error, user } from "../atoms/atoms";
+import { loadingState, userState } from "../atoms/atoms";
 import { validateEmail } from "../utils/helpers";
 import { useRecoilState } from "recoil";
 import { loginSignupStyles } from "../../styles/login-signup";
@@ -8,6 +8,8 @@ import { profilePlaceholder } from "../utils/image-paths";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { Feather } from "@expo/vector-icons";
+import { COLORS, formStyles } from "../../styles/general";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -16,17 +18,28 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [fullname, setFullName] = useState("");
   const [password, setPassword] = useState("");
-  const [userData, setUserData] = useRecoilState(user);
-  const [errorState, setError] = useRecoilState(error);
+  const [viewPassword, setViewPassword] = useState(false);
+  const [userData, setUserData] = useRecoilState(userState);
+  const [isLoading, setIsLoading] = useRecoilState(loadingState);
+  const [error, setError] = useState("");
 
-  const { formView, input, actionButton, actionText, errorText } =
-    loginSignupStyles;
+  const {
+    actionButton,
+    actionText,
+    errorText,
+    passwordIcon,
+    passwordView,
+    loadingText,
+  } = loginSignupStyles;
+  const { formView, input } = formStyles;
 
   const handleAuth = async () => {
     setError("");
 
     if (validateEmail(email)) {
       try {
+        setIsLoading("Signing you up...");
+
         const user = await (
           await createUserWithEmailAndPassword(auth, email, password)
         ).user;
@@ -63,19 +76,32 @@ const Signup = () => {
           value={email}
           onChangeText={(text) => setEmail(text)}
         />
-        <TextInput
-          placeholder="Password"
-          style={input}
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-          secureTextEntry
-        />
+        <View style={passwordView}>
+          <TextInput
+            placeholder="Password"
+            style={input}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+            secureTextEntry={!viewPassword}
+          />
+          <Feather
+            name={!viewPassword ? "eye" : "eye-off"}
+            size={24}
+            color={COLORS.deepOrange}
+            style={passwordIcon}
+            onPress={() => setViewPassword((prev) => !prev)}
+          />
+        </View>
       </View>
 
+      <Text style={[{ display: error === "" ? "none" : "flex" }, errorText]}>
+        {error}
+      </Text>
+
       <Text
-        style={[{ display: errorState === "" ? "none" : "flex" }, errorText]}
+        style={[{ display: isLoading === "" ? "none" : "flex" }, loadingText]}
       >
-        {errorState}
+        {isLoading}
       </Text>
 
       <TouchableOpacity style={actionButton} onPress={handleAuth}>

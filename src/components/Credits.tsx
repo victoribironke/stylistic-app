@@ -1,11 +1,11 @@
-import { user } from "../atoms/atoms";
+import { userState } from "../atoms/atoms";
 import { homeStyles } from "../../styles/home";
 import { useRecoilValue } from "recoil";
 import { Text, TouchableOpacity, View } from "react-native";
 import { openBrowserAsync } from "expo-web-browser";
 
 const Credits = () => {
-  const userData = useRecoilValue(user);
+  const userData = useRecoilValue(userState);
 
   const {
     credits,
@@ -26,7 +26,7 @@ const Credits = () => {
       <TouchableOpacity
         onPress={() =>
           openBrowserAsync(
-            "https://stylistic.lemonsqueezy.com/checkout?cart=5f6aa997-6519-465b-af9f-b90120bbc44a"
+            "https://stylistic.lemonsqueezy.com/checkout/buy/e4bed891-415e-4dbc-bd6a-a6b79a4b2b83"
           )
         }
         style={buyCredits}

@@ -1,7 +1,7 @@
 import Select from "../components/Select";
 import OtherHeader from "../components/OtherHeader";
 import { app } from "../firebase/firebase";
-import { user } from "../atoms/atoms";
+import { userState } from "../atoms/atoms";
 import { homeStyles } from "../../styles/home";
 import { accountStyles } from "../../styles/account";
 import { getAuth, signOut } from "firebase/auth";
@@ -11,8 +11,8 @@ import { Text, TouchableOpacity, View, Image } from "react-native";
 const auth = getAuth(app);
 
 const Account = () => {
-  const userData = useRecoilValue(user);
-  const resetUserState = useResetRecoilState(user);
+  const userData = useRecoilValue(userState);
+  const resetUserState = useResetRecoilState(userState);
 
   const {
     container,
@@ -23,6 +23,8 @@ const Account = () => {
     recSettings,
     save,
     saveText,
+    signOutButton,
+    signOutText,
   } = accountStyles;
   const { profileImage } = homeStyles;
 
@@ -54,8 +56,8 @@ const Account = () => {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity onPress={signOutUser}>
-        <Text>Sign out</Text>
+      <TouchableOpacity style={signOutButton} onPress={signOutUser}>
+        <Text style={signOutText}>Sign out</Text>
       </TouchableOpacity>
     </View>
   );

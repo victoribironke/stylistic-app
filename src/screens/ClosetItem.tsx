@@ -1,12 +1,12 @@
 import OtherHeader from "../components/OtherHeader";
 import { COLORS } from "../../styles/general";
 import { useRecoilValue } from "recoil";
-import { selectedItem } from "../atoms/atoms";
+import { selectedItemState } from "../atoms/atoms";
 import { closetItemStyles } from "../../styles/closet-item";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 
 const ClosetItem = () => {
-  const { colors, imageURL, subType, type } = useRecoilValue(selectedItem);
+  const { colors, imageURL, subType, type } = useRecoilValue(selectedItemState);
   const {
     container,
     button,

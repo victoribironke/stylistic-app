@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { doc, getFirestore, onSnapshot } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { homeStyles } from "../../styles/home";
-import { user } from "../atoms/atoms";
+import { loadingState, userState } from "../atoms/atoms";
 import Closet from "../components/Closet";
 import Credits from "../components/Credits";
 import HomeHeader from "../components/HomeHeader";
@@ -17,7 +17,8 @@ const db = getFirestore(app);
 const Home = () => {
   const { container } = homeStyles;
   const { navigate } = useNavigation();
-  const [userData, setUserData] = useRecoilState(user);
+  const [userData, setUserData] = useRecoilState(userState);
+  const setIsLoading = useSetRecoilState(loadingState);
 
   useEffect(() => {
     let unsubSnapshot: () => void;
@@ -26,7 +27,6 @@ const Home = () => {
       if (user) {
         unsubSnapshot = onSnapshot(doc(db, "users", user.uid), (doc) => {
           const data = doc.data();
-
           setUserData({
             ...userData,
             email: data!.email,
@@ -34,16 +34,19 @@ const Home = () => {
             name: data!.name,
             credits: data!.credits,
           });
-        });
 
-        navigate("Home Screen");
+          setIsLoading("");
+          navigate("Home Screen");
+        });
       } else {
-        unsubSnapshot();
         navigate("Login Signup");
       }
     });
 
-    return unsubAuthState;
+    return () => {
+      unsubAuthState();
+      unsubSnapshot();
+    };
   }, []);
 
   return (
