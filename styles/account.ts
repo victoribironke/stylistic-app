@@ -49,5 +49,5 @@ export const accountStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  signOutText: { fontFamily: FONTS.regular, color: "white", fontSize: 16 },
+  signOutText: { fontFamily: FONTS.medium, color: "white", fontSize: 18 },
 });

@@ -1,25 +1,21 @@
-import { app } from "../firebase/firebase";
+import { auth, db } from "../firebase/firebase";
 import { useState } from "react";
 import { loadingState, userState } from "../atoms/atoms";
 import { validateEmail } from "../utils/helpers";
 import { useRecoilState } from "recoil";
 import { loginSignupStyles } from "../../styles/login-signup";
 import { profilePlaceholder } from "../utils/image-paths";
-import { getFirestore, setDoc, doc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Feather } from "@expo/vector-icons";
 import { COLORS, formStyles } from "../../styles/general";
-
-const auth = getAuth(app);
-const db = getFirestore(app);
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [fullname, setFullName] = useState("");
   const [password, setPassword] = useState("");
   const [viewPassword, setViewPassword] = useState(false);
-  const [userData, setUserData] = useRecoilState(userState);
   const [isLoading, setIsLoading] = useRecoilState(loadingState);
   const [error, setError] = useState("");
 
@@ -53,12 +49,14 @@ const Signup = () => {
         });
 
         await setDoc(doc(db, "user-mappings", user.email!), { uid: user.uid });
-
-        setUserData({ ...userData, uid: user.uid });
       } catch (e) {
+        setIsLoading("");
         setError("Email already in use");
       }
-    } else setError("Invalid email address");
+    } else {
+      setError("Invalid email address");
+      setIsLoading("");
+    }
   };
 
   return (
@@ -94,15 +92,9 @@ const Signup = () => {
         </View>
       </View>
 
-      <Text style={[{ display: error === "" ? "none" : "flex" }, errorText]}>
-        {error}
-      </Text>
+      {error && <Text style={errorText}>{error}</Text>}
 
-      <Text
-        style={[{ display: isLoading === "" ? "none" : "flex" }, loadingText]}
-      >
-        {isLoading}
-      </Text>
+      {isLoading && <Text style={loadingText}>{isLoading}</Text>}
 
       <TouchableOpacity style={actionButton} onPress={handleAuth}>
         <Text style={actionText}>Sign up</Text>

@@ -8,5 +8,15 @@ export const addStuffStyles = StyleSheet.create({
     paddingHorizontal: 14,
     marginTop: StatusBar.currentHeight,
     gap: 24,
+    alignItems: "center",
   },
+  button: {
+    backgroundColor: COLORS.blue,
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    width: "90%",
+  },
+  buttonText: { fontFamily: FONTS.medium, color: "white", fontSize: 18 },
 });

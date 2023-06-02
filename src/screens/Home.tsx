@@ -9,10 +9,7 @@ import { loadingState, userState } from "../atoms/atoms";
 import Closet from "../components/Closet";
 import Credits from "../components/Credits";
 import HomeHeader from "../components/HomeHeader";
-import { app } from "../firebase/firebase";
-
-const auth = getAuth(app);
-const db = getFirestore(app);
+import { auth, db } from "../firebase/firebase";
 
 const Home = () => {
   const { container } = homeStyles;
@@ -29,6 +26,7 @@ const Home = () => {
           const data = doc.data();
           setUserData({
             ...userData,
+            uid: user.uid,
             email: data!.email,
             imageURL: data!.imageURL,
             name: data!.name,

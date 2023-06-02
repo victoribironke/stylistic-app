@@ -19,6 +19,7 @@ export const selectedItemState = atom({
       "https://firebasestorage.googleapis.com/v0/b/stylistic-io.appspot.com/o/brennan-burling-ay53qag90W8-unsplash.jpg?alt=media&token=c25f6b83-7eca-49fc-a3bd-c9de39f51d39",
     colors: [""],
     type: "",
+    id: "",
     subType: "",
   },
 });

@@ -1,22 +1,19 @@
-import { app } from "../firebase/firebase";
+import { auth } from "../firebase/firebase";
 import { useState } from "react";
-import { loadingState, userState } from "../atoms/atoms";
+import { loadingState } from "../atoms/atoms";
 import { validateEmail } from "../utils/helpers";
 import { useRecoilState } from "recoil";
 import { loginSignupStyles } from "../../styles/login-signup";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import { COLORS, formStyles } from "../../styles/general";
 
-const auth = getAuth(app);
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [viewPassword, setViewPassword] = useState(false);
-  const [userData, setUserData] = useRecoilState(userState);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useRecoilState(loadingState);
 
@@ -40,12 +37,14 @@ const Login = () => {
         const user = await (
           await signInWithEmailAndPassword(auth, email, password)
         ).user;
-
-        setUserData({ ...userData, uid: user.uid });
       } catch (e) {
+        setIsLoading("");
         setError("Email or password is incorrect");
       }
-    } else setError("Invalid email address");
+    } else {
+      setError("Invalid email address");
+      setIsLoading("");
+    }
   };
 
   return (
@@ -75,15 +74,9 @@ const Login = () => {
         </View>
       </View>
 
-      <Text style={[{ display: error === "" ? "none" : "flex" }, errorText]}>
-        {error}
-      </Text>
+      {error && <Text style={errorText}>{error}</Text>}
 
-      <Text
-        style={[{ display: isLoading === "" ? "none" : "flex" }, loadingText]}
-      >
-        {isLoading}
-      </Text>
+      {isLoading && <Text style={loadingText}>{isLoading}</Text>}
 
       <TouchableOpacity style={actionButton} onPress={handleAuth}>
         <Text style={actionText}>Login</Text>

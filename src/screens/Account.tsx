@@ -1,14 +1,12 @@
 import Select from "../components/Select";
 import OtherHeader from "../components/OtherHeader";
-import { app } from "../firebase/firebase";
+import { auth } from "../firebase/firebase";
 import { userState } from "../atoms/atoms";
 import { homeStyles } from "../../styles/home";
 import { accountStyles } from "../../styles/account";
 import { getAuth, signOut } from "firebase/auth";
 import { useRecoilValue, useResetRecoilState } from "recoil";
 import { Text, TouchableOpacity, View, Image } from "react-native";
-
-const auth = getAuth(app);
 
 const Account = () => {
   const userData = useRecoilValue(userState);
