@@ -9,15 +9,11 @@ export const clothingTypes = [
   "Headwear",
 ];
 
-export const headwear = [
-  "Face cap",
-  "Beanie",
-  "Bucket hat",
-  "Beret",
-  "Hat",
-].sort(sortingFn);
+const headwear = ["Face cap", "Beanie", "Bucket hat", "Beret", "Hat"].sort(
+  sortingFn
+);
 
-export const footwear = [
+const footwear = [
   "Sneakers",
   "Court shoe",
   "Sandals",
@@ -29,7 +25,7 @@ export const footwear = [
   "Flip flops",
 ].sort(sortingFn);
 
-export const tops = [
+const tops = [
   "Polo",
   "Vintage",
   "Crop top",
@@ -39,7 +35,7 @@ export const tops = [
   "Sweater/Cardigan",
 ].sort(sortingFn);
 
-export const trousers = [
+const trousers = [
   "Jeans",
   "Bell bottoms",
   "Leggings",
@@ -49,8 +45,8 @@ export const trousers = [
   "Corduroy",
 ].sort(sortingFn);
 
-export const shorts = ["Jeans", "Cargo", "Chinos", "Corduroy"].sort(sortingFn);
+const shorts = ["Jeans", "Cargo", "Chinos", "Corduroy"].sort(sortingFn);
 
-export const socks = ["Ankle socks", "Leg warmers", "Knee highs"].sort(
-  sortingFn
-);
+const socks = ["Ankle socks", "Leg warmers", "Knee highs"].sort(sortingFn);
+
+export const subtypes = { tops, socks, shorts, trousers, footwear, headwear };

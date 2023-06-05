@@ -17,24 +17,20 @@ const Items = ({ data }: ItemsProps) => {
 
   return (
     <ScrollView style={itemsView} showsVerticalScrollIndicator={false}>
-      {topsArr.length > 0 ? (
-        <ScrollViewItem text="Tops" data={topsArr} />
-      ) : null}
-      {socksArr.length > 0 ? (
-        <ScrollViewItem text="Socks" data={socksArr} />
-      ) : null}
-      {shortsArr.length > 0 ? (
+      {topsArr.length > 0 && <ScrollViewItem text="Tops" data={topsArr} />}
+      {socksArr.length > 0 && <ScrollViewItem text="Socks" data={socksArr} />}
+      {shortsArr.length > 0 && (
         <ScrollViewItem text="Shorts" data={shortsArr} />
-      ) : null}
-      {trousersArr.length > 0 ? (
+      )}
+      {trousersArr.length > 0 && (
         <ScrollViewItem text="Trousers" data={trousersArr} />
-      ) : null}
-      {footwearArr.length > 0 ? (
+      )}
+      {footwearArr.length > 0 && (
         <ScrollViewItem text="Footwear" data={footwearArr} />
-      ) : null}
-      {headwearArr.length > 0 ? (
+      )}
+      {headwearArr.length > 0 && (
         <ScrollViewItem text="Headwear" data={headwearArr} />
-      ) : null}
+      )}
     </ScrollView>
   );
 };

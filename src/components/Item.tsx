@@ -5,16 +5,15 @@ import { useNavigation } from "@react-navigation/native";
 import { useSetRecoilState } from "recoil";
 import { Image, Text, View, TouchableOpacity } from "react-native";
 
-const Item = ({ imageURL, colors, subType, type }: ItemProps) => {
-  const { itemView, itemImage, color, colorsView, typeStyle, typeView } =
-    homeStyles;
+const Item = ({ imageURL, colors, subtype, type, id }: ItemProps) => {
+  const { itemView, itemImage, color, colorsView, typeText } = homeStyles;
   const imageURI = { uri: imageURL };
   const setSelectedItem = useSetRecoilState(selectedItemState);
 
   const { navigate } = useNavigation();
 
   const goToItem = () => {
-    setSelectedItem({ colors, imageURL, subType, type });
+    setSelectedItem({ colors, imageURL, subtype, type, id });
     navigate("Closet Item");
   };
 
@@ -27,10 +26,7 @@ const Item = ({ imageURL, colors, subType, type }: ItemProps) => {
         ))}
       </View>
 
-      <View style={typeView}>
-        {/* <Text style={typeStyle}>{type}</Text> */}
-        <Text style={typeStyle}>{subType}</Text>
-      </View>
+      <Text style={typeText}>{subtype}</Text>
     </TouchableOpacity>
   );
 };

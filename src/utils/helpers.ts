@@ -28,15 +28,7 @@ export const splitArr = (arr: ItemProps[]) => {
 };
 
 export const randomString = () => {
-  let result = "";
-  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-  const charactersLength = characters.length;
-
-  for (let i = 0; i < 10; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-
-  return result;
+  return `id_${new Date().getTime()}`;
 };
 
 export const validateEmail = (email: string) => {
@@ -46,4 +38,8 @@ export const validateEmail = (email: string) => {
     );
 
   return isValid;
+};
+
+export const rgbToHex = (r: number, g: number, b: number): string => {
+  return "#" + [r, g, b].map((x) => x.toString(16).padStart(2, "0")).join("");
 };

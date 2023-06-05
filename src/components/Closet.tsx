@@ -41,7 +41,7 @@ const Closet = () => {
         </TouchableOpacity>
       </View>
 
-      {clothData === null ? <NoItems /> : <Items data={clothData} />}
+      {closetItems.length === 0 ? <NoItems /> : <Items data={closetItems} />}
     </View>
   );
 };

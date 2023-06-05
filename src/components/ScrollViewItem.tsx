@@ -18,8 +18,9 @@ const ScrollViewItem = ({ data, text }: ScrollViewItemProps) => {
           <Item
             colors={item.colors}
             imageURL={item.imageURL}
-            subType={item.subType}
+            subtype={item.subtype}
             type={item.type}
+            id={item.id}
             key={i}
           />
         ))}

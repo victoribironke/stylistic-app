@@ -48,7 +48,7 @@ export const homeStyles = StyleSheet.create({
     fontSize: 16,
   },
   buyCredits: {
-    backgroundColor: COLORS.deepOrange,
+    backgroundColor: COLORS.blue,
     borderRadius: 8,
     paddingHorizontal: 15,
     paddingVertical: 10,
@@ -112,7 +112,7 @@ export const homeStyles = StyleSheet.create({
   },
   itemView: {
     borderWidth: 1,
-    borderColor: COLORS.deepOrange,
+    borderColor: COLORS.blue,
     padding: 6,
     gap: 8,
     borderRadius: 10,
@@ -132,12 +132,9 @@ export const homeStyles = StyleSheet.create({
     height: 20,
     borderRadius: 100,
   },
-  typeStyle: {
+  typeText: {
     fontFamily: FONTS.regular,
     fontSize: 16,
-  },
-  typeView: {
-    gap: 3,
   },
   scrollItemView: { gap: 8, marginBottom: 15 },
   scrollView: {

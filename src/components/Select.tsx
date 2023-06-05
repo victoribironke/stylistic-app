@@ -1,38 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SelectProps } from "../types/general";
 import { MaterialIcons } from "@expo/vector-icons";
-import { COLORS, dropDownStyles } from "../../styles/general";
+import { dropDownStyles } from "../../styles/general";
 import { Text, TouchableOpacity, View } from "react-native";
+import { useRecoilState } from "recoil";
+import { currentTypeState } from "../atoms/atoms";
 
-const Select = ({ arr, selectedIndex }: SelectProps) => {
+const Select = ({ arr, selectedIndex, type }: SelectProps) => {
   const [isHidden, setIsHidden] = useState(true);
   const [state, setState] = useState(arr[selectedIndex]);
+  const [currentType, setCurrentType] = useRecoilState(currentTypeState);
 
-  const { containerText, containerView, dropDown, dropDownText } =
-    dropDownStyles;
+  const {
+    containerText,
+    containerView,
+    dropDown,
+    dropDownText,
+    selectContainer,
+  } = dropDownStyles;
 
   const filterItems = (label: string) => {
     setState(label);
     setIsHidden((prev) => !prev);
+
+    if (type) setCurrentType({ ...currentType, type: label });
+    else setCurrentType({ ...currentType, subtype: label });
   };
 
-  const renderFilters = (label: string, i: number) => (
-    <Text
-      key={i}
-      style={[
-        {
-          backgroundColor: i % 2 === 0 ? COLORS.gray : "white",
-        },
-        dropDownText,
-      ]}
-      onPress={() => filterItems(label)}
-    >
-      {label}
-    </Text>
-  );
-
   return (
-    <View>
+    <View style={selectContainer}>
       <TouchableOpacity
         style={containerView}
         onPress={() => setIsHidden((prev) => !prev)}
@@ -48,11 +44,19 @@ const Select = ({ arr, selectedIndex }: SelectProps) => {
         />
       </TouchableOpacity>
 
-      <View
-        style={[isHidden ? { display: "none" } : { display: "flex" }, dropDown]}
-      >
-        {arr.map(renderFilters)}
-      </View>
+      {!isHidden && (
+        <View style={dropDown}>
+          {arr.map((label, i) => (
+            <Text
+              key={i}
+              style={dropDownText}
+              onPress={() => filterItems(label)}
+            >
+              {label}
+            </Text>
+          ))}
+        </View>
+      )}
     </View>
   );
 };

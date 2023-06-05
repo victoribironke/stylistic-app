@@ -26,11 +26,6 @@ export const closetItemStyles = StyleSheet.create({
   typeText: { fontFamily: FONTS.medium, fontSize: 25 },
   separator: { padding: 5, backgroundColor: "black", borderRadius: 100 },
   subTypeText: { fontFamily: FONTS.regular, fontSize: 25 },
-  buttonsView: {
-    padding: 4,
-    gap: 15,
-    flexDirection: "row",
-  },
   button: {
     paddingHorizontal: 25,
     paddingVertical: 12,
@@ -38,6 +33,7 @@ export const closetItemStyles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
+    textAlign: "center",
     fontFamily: FONTS.regular,
     fontSize: 20,
   },

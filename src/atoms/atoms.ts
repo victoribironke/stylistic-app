@@ -7,7 +7,7 @@ export const userState = atom({
     imageURL: "",
     name: "",
     email: "",
-    closetItems: null,
+    closetItems: [],
     credits: 0,
   },
 });
@@ -20,11 +20,16 @@ export const selectedItemState = atom({
     colors: [""],
     type: "",
     id: "",
-    subType: "",
+    subtype: "",
   },
 });
 
 export const loadingState = atom({
   key: "loading",
   default: "",
+});
+
+export const currentTypeState = atom({
+  key: "types",
+  default: { type: "Select type", subtype: "Select subtype" },
 });

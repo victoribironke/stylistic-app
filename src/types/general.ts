@@ -1,9 +1,9 @@
 export type ItemProps = {
   colors: string[];
   type: string;
-  subType: string;
+  subtype: string;
   imageURL: string;
-  id?: number;
+  id: string;
 };
 
 export type ItemsProps = {
@@ -27,4 +27,10 @@ export type CreditCategoryProps = {
 export type SelectProps = {
   arr: string[];
   selectedIndex: number; // it means the index of the default item in the array
+  type: boolean;
+};
+
+export type ImageDataRes = {
+  colors: { red: number; blue: number; green: number; alpha?: number }[];
+  labels: string[];
 };

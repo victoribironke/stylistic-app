@@ -7,50 +7,84 @@ import {
   launchImageLibraryAsync,
   MediaTypeOptions,
 } from "expo-image-picker";
-import { auth, db, storage } from "../firebase/firebase";
+import { db, storage } from "../firebase/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useRecoilValue } from "recoil";
-import { userState } from "../atoms/atoms";
-import { randomString } from "../utils/helpers";
+import { currentTypeState, userState } from "../atoms/atoms";
+import { randomString, rgbToHex } from "../utils/helpers";
 import { loginSignupStyles } from "../../styles/login-signup";
+import { ImageDataRes } from "../types/general";
+import { closetItemStyles } from "../../styles/closet-item";
+import Select from "../components/Select";
+import { clothingTypes, subtypes } from "../utils/clothing";
+import { doc, setDoc, arrayUnion } from "firebase/firestore";
 
 const AddStuff = () => {
-  const { container, button, buttonText } = addStuffStyles;
-  const { errorText, loadingText } = loginSignupStyles;
-  const [hasGalleryPermission, setHasGalleryPermission] = useState(false);
   const [image, setImage] = useState("");
-  const [uploaded, setUploaded] = useState(false);
-  const [error, setError] = useState("");
-  const [uploading, setUploading] = useState("");
-  const [disabled, setDisabled] = useState(false);
   const { uid } = useRecoilValue(userState);
+  const [status, setStatus] = useState({
+    uploading: "",
+    uploaded: false,
+    isError: false,
+    selected: false,
+    adding: "",
+  });
+  const [colors, setColors] = useState<string[]>([]);
+  const [disabled, setDisabled] = useState(false);
+  const [subtypeArr, setSubtypeArr] = useState<string[]>([]);
+  const { errorText, loadingText } = loginSignupStyles;
+  const { container, button, buttonText } = addStuffStyles;
+  const { colorsContainer, colorsView } = closetItemStyles;
+  const currentType = useRecoilValue(currentTypeState);
 
   useEffect(() => {
-    (async () => {
-      const status = await requestMediaLibraryPermissionsAsync();
-      setHasGalleryPermission(status.granted);
-    })();
-  }, []);
+    requestMediaLibraryPermissionsAsync();
+
+    const { subtype, type } = currentType;
+    if (type !== "Select type" && subtype !== "Select subtype") {
+      setStatus({ ...status, selected: true });
+    } else setStatus({ ...status, selected: false });
+
+    if (type === "Top") setSubtypeArr(subtypes.tops);
+    else if (type === "Socks") setSubtypeArr(subtypes.socks);
+    else if (type === "Shorts") setSubtypeArr(subtypes.shorts);
+    else if (type === "Trousers") setSubtypeArr(subtypes.trousers);
+    else if (type === "Footwear") setSubtypeArr(subtypes.footwear);
+    else if (type === "Headwear") setSubtypeArr(subtypes.headwear);
+    else setSubtypeArr([]);
+  }, [currentType]);
 
   const uploadImage = async () => {
-    setError("");
+    setStatus({ ...status, isError: false });
     setDisabled(true);
 
-    const imageData = await fetch(image);
-    const imageBlob = await imageData.blob();
+    const imageBlob = await (await fetch(image)).blob();
     const storageRef = ref(storage, `${uid}/${randomString()}`);
 
     try {
-      setUploading("Uploading your image...");
+      setStatus({ ...status, uploading: "Uploading your image..." });
       const uploadTask = await uploadBytes(storageRef, imageBlob);
       const downloadURL = await getDownloadURL(uploadTask.ref);
 
-      setUploading("Uploaded!");
-      setTimeout(() => setUploading(""), 1000);
-      setUploaded(true);
+      const data: ImageDataRes = await (
+        await fetch("https://get-image-data-stylistic.onrender.com", {
+          headers: { url: downloadURL },
+        })
+      ).json();
+
+      const colors = data.colors
+        .slice(0, 5)
+        .map(({ red, blue, green }) => rgbToHex(red, blue, green));
+
+      setStatus({ ...status, uploading: "Uploaded!" });
+
+      setTimeout(() => {
+        setStatus({ ...status, uploading: "", uploaded: true });
+        setColors(colors);
+        setImage(downloadURL);
+      }, 1000);
     } catch (e) {
-      setUploading("");
-      setError("Error uploading your image...");
+      setStatus({ ...status, uploading: "true", isError: true });
       setDisabled(false);
     }
   };
@@ -68,14 +102,30 @@ const AddStuff = () => {
   };
 
   const addItem = async () => {
-    // set a unique id for each item created
+    const id = randomString();
+
+    setStatus({ ...status, adding: "Adding to your closet..." });
+    await setDoc(
+      doc(db, "users", uid),
+      {
+        closetItems: arrayUnion({
+          id,
+          colors,
+          type: currentType.type,
+          subtype: currentType.subtype,
+          imageURL: image,
+        }),
+      },
+      { merge: true }
+    );
+    setStatus({ ...status, adding: "Added" });
   };
 
   return (
     <View style={container}>
       <OtherHeader title="Add New Item" />
 
-      {!uploaded && (
+      {!status.uploaded && (
         <TouchableOpacity style={button} onPress={pickImage}>
           <Text style={buttonText}>Select Image</Text>
         </TouchableOpacity>
@@ -88,11 +138,13 @@ const AddStuff = () => {
         />
       )}
 
-      {error && <Text style={errorText}>{error}</Text>}
+      {status.isError && (
+        <Text style={errorText}>Error uploading your image...</Text>
+      )}
 
-      {uploading && <Text style={loadingText}>{uploading}</Text>}
+      {status.uploading && <Text style={loadingText}>{status.uploading}</Text>}
 
-      {image && !uploaded && (
+      {image && !status.uploaded && (
         <TouchableOpacity
           style={button}
           onPress={uploadImage}
@@ -102,7 +154,35 @@ const AddStuff = () => {
         </TouchableOpacity>
       )}
 
-      {image && uploaded && (
+      {colors && (
+        <View style={colorsContainer}>
+          {colors.map((color, i) => (
+            <View
+              style={[{ backgroundColor: color }, colorsView]}
+              key={i}
+            ></View>
+          ))}
+        </View>
+      )}
+
+      {image && status.uploaded && (
+        <>
+          <Select
+            arr={["Select type", ...clothingTypes]}
+            selectedIndex={0}
+            type={true}
+          />
+          <Select
+            arr={["Select subtype", ...subtypeArr]}
+            selectedIndex={0}
+            type={false}
+          />
+        </>
+      )}
+
+      {status.adding && <Text style={loadingText}>{status.adding}</Text>}
+
+      {image && status.uploaded && status.selected && (
         <TouchableOpacity style={button} onPress={addItem}>
           <Text style={buttonText}>Add</Text>
         </TouchableOpacity>

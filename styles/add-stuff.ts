@@ -7,7 +7,7 @@ export const addStuffStyles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 14,
     marginTop: StatusBar.currentHeight,
-    gap: 24,
+    gap: 15,
     alignItems: "center",
   },
   button: {

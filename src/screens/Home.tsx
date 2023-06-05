@@ -1,9 +1,9 @@
 import { View } from "react-native";
 import { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { doc, getFirestore, onSnapshot } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { doc, onSnapshot } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
+import { useSetRecoilState } from "recoil";
 import { homeStyles } from "../../styles/home";
 import { loadingState, userState } from "../atoms/atoms";
 import Closet from "../components/Closet";
@@ -14,7 +14,7 @@ import { auth, db } from "../firebase/firebase";
 const Home = () => {
   const { container } = homeStyles;
   const { navigate } = useNavigation();
-  const [userData, setUserData] = useRecoilState(userState);
+  const setUserData = useSetRecoilState(userState);
   const setIsLoading = useSetRecoilState(loadingState);
 
   useEffect(() => {
@@ -25,12 +25,12 @@ const Home = () => {
         unsubSnapshot = onSnapshot(doc(db, "users", user.uid), (doc) => {
           const data = doc.data();
           setUserData({
-            ...userData,
             uid: user.uid,
             email: data!.email,
             imageURL: data!.imageURL,
             name: data!.name,
             credits: data!.credits,
+            closetItems: data!.closetItems,
           });
 
           setIsLoading("");
