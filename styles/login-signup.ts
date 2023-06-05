@@ -13,11 +13,11 @@ export const loginSignupStyles = StyleSheet.create({
     flexDirection: "row",
     gap: 6,
   },
-  footerText: { fontSize: 15 },
+  footerText: { fontSize: 18 },
   footerButton: {
-    borderBottomColor: COLORS.deepOrange,
+    borderBottomColor: COLORS.blue,
     borderBottomWidth: 1,
-    paddingBottom: 4,
+    paddingBottom: 2,
     paddingHorizontal: 2,
   },
   passwordView: { alignItems: "center", justifyContent: "center" },
@@ -37,8 +37,20 @@ export const loginSignupStyles = StyleSheet.create({
     fontFamily: FONTS.medium,
   },
   loadingText: {
-    color: COLORS.deepOrange,
+    color: COLORS.blue,
     fontSize: 16,
     fontFamily: FONTS.medium,
   },
+  loginView: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "80%",
+  },
+  forgotButton: {
+    borderBottomColor: COLORS.blue,
+    borderBottomWidth: 1,
+    paddingBottom: 2,
+  },
+  forgotText: { fontFamily: FONTS.regular, fontSize: 16 },
 });

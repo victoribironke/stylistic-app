@@ -1,6 +1,6 @@
 import { auth, db } from "../firebase/firebase";
 import { useState } from "react";
-import { loadingState, userState } from "../atoms/atoms";
+import { loadingState } from "../atoms/atoms";
 import { validateEmail } from "../utils/helpers";
 import { useRecoilState } from "recoil";
 import { loginSignupStyles } from "../../styles/login-signup";
@@ -46,17 +46,16 @@ const Signup = () => {
           name: fullname,
           imageURL: profilePlaceholder(fullname),
           credits: 100,
+          closetItems: [],
         });
 
         await setDoc(doc(db, "user-mappings", user.email!), { uid: user.uid });
       } catch (e) {
-        setIsLoading("");
         setError("Email already in use");
       }
-    } else {
-      setError("Invalid email address");
-      setIsLoading("");
-    }
+    } else setError("Invalid email address");
+
+    setIsLoading("");
   };
 
   return (
@@ -85,7 +84,7 @@ const Signup = () => {
           <Feather
             name={!viewPassword ? "eye" : "eye-off"}
             size={24}
-            color={COLORS.deepOrange}
+            color={COLORS.blue}
             style={passwordIcon}
             onPress={() => setViewPassword((prev) => !prev)}
           />

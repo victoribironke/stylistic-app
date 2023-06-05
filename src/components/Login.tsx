@@ -4,10 +4,12 @@ import { loadingState } from "../atoms/atoms";
 import { validateEmail } from "../utils/helpers";
 import { useRecoilState } from "recoil";
 import { loginSignupStyles } from "../../styles/login-signup";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
-
 import { COLORS, formStyles } from "../../styles/general";
 
 const Login = () => {
@@ -24,6 +26,9 @@ const Login = () => {
     passwordIcon,
     passwordView,
     loadingText,
+    loginView,
+    forgotButton,
+    forgotText,
   } = loginSignupStyles;
   const { formView, input } = formStyles;
 
@@ -34,17 +39,30 @@ const Login = () => {
       try {
         setIsLoading("Logging in...");
 
-        const user = await (
-          await signInWithEmailAndPassword(auth, email, password)
-        ).user;
+        await signInWithEmailAndPassword(auth, email, password);
       } catch (e) {
-        setIsLoading("");
         setError("Email or password is incorrect");
       }
-    } else {
-      setError("Invalid email address");
+    } else setError("Invalid email address");
+
+    setIsLoading("");
+  };
+
+  const sendResetEmail = async () => {
+    if (validateEmail(email)) {
+      try {
+        await sendPasswordResetEmail(auth, email);
+
+        setIsLoading("Password reset link sent");
+      } catch (e) {
+        setError("No user found with that email address");
+      }
+    } else setError("Invalid email address");
+
+    setTimeout(() => {
+      setError("");
       setIsLoading("");
-    }
+    }, 2000);
   };
 
   return (
@@ -67,7 +85,7 @@ const Login = () => {
           <Feather
             name={!viewPassword ? "eye" : "eye-off"}
             size={24}
-            color={COLORS.deepOrange}
+            color={COLORS.blue}
             style={passwordIcon}
             onPress={() => setViewPassword((prev) => !prev)}
           />
@@ -78,9 +96,15 @@ const Login = () => {
 
       {isLoading && <Text style={loadingText}>{isLoading}</Text>}
 
-      <TouchableOpacity style={actionButton} onPress={handleAuth}>
-        <Text style={actionText}>Login</Text>
-      </TouchableOpacity>
+      <View style={loginView}>
+        <TouchableOpacity style={forgotButton} onPress={sendResetEmail}>
+          <Text style={forgotText}>Forgot Password</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={actionButton} onPress={handleAuth}>
+          <Text style={actionText}>Login</Text>
+        </TouchableOpacity>
+      </View>
     </>
   );
 };
