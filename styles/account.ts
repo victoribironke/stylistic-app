@@ -8,11 +8,15 @@ export const accountStyles = StyleSheet.create({
     paddingHorizontal: 14,
     marginTop: StatusBar.currentHeight,
     gap: 24,
+    alignItems: "center",
   },
   detailsView: {
     gap: 20,
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
+    width: "100%",
+    paddingHorizontal: 12,
+    marginBottom: 12,
   },
   textView: {
     gap: 5,
@@ -25,29 +29,17 @@ export const accountStyles = StyleSheet.create({
     fontFamily: FONTS.regular,
     fontSize: 16,
   },
-  recSettings: {
-    flexDirection: "row",
-    gap: 20,
+  button: {
+    paddingVertical: 14,
+    borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
+    width: "80%",
   },
-  save: {
-    backgroundColor: COLORS.deepOrange,
-    borderRadius: 8,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-  },
-  saveText: {
+  buttonText: { fontFamily: FONTS.medium, color: "white", fontSize: 18 },
+  messageText: {
+    fontFamily: FONTS.medium,
     fontSize: 18,
-    fontFamily: FONTS.regular,
-    color: "white",
+    color: COLORS.blue,
   },
-  signOutButton: {
-    backgroundColor: "red",
-    paddingVertical: 12,
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  signOutText: { fontFamily: FONTS.medium, color: "white", fontSize: 18 },
 });

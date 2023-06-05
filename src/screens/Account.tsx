@@ -1,14 +1,16 @@
-import Select from "../components/Select";
 import OtherHeader from "../components/OtherHeader";
 import { auth } from "../firebase/firebase";
 import { userState } from "../atoms/atoms";
 import { homeStyles } from "../../styles/home";
 import { accountStyles } from "../../styles/account";
-import { getAuth, signOut } from "firebase/auth";
+import { sendPasswordResetEmail, signOut } from "firebase/auth";
 import { useRecoilValue, useResetRecoilState } from "recoil";
-import { Text, TouchableOpacity, View, Image } from "react-native";
+import { Text, TouchableOpacity, View, Image, TextInput } from "react-native";
+import { COLORS } from "../../styles/general";
+import { useState } from "react";
 
 const Account = () => {
+  const [message, setMessage] = useState("");
   const userData = useRecoilValue(userState);
   const resetUserState = useResetRecoilState(userState);
 
@@ -18,11 +20,9 @@ const Account = () => {
     textView,
     emailText,
     nameText,
-    recSettings,
-    save,
-    saveText,
-    signOutButton,
-    signOutText,
+    button,
+    buttonText,
+    messageText,
   } = accountStyles;
   const { profileImage } = homeStyles;
 
@@ -33,6 +33,13 @@ const Account = () => {
   const signOutUser = () => {
     resetUserState();
     signOut(auth);
+  };
+
+  const resetPassword = async () => {
+    await sendPasswordResetEmail(auth, userData.email);
+    setMessage("Password reset link sent!");
+
+    setTimeout(() => setMessage(""), 1000);
   };
 
   return (
@@ -47,15 +54,20 @@ const Account = () => {
         </View>
       </View>
 
-      <View style={recSettings}>
-        <Select arr={["1", "2"]} selectedIndex={1} />
-        <TouchableOpacity style={save}>
-          <Text style={saveText}>Save</Text>
-        </TouchableOpacity>
-      </View>
+      {message && <Text style={messageText}>{message}</Text>}
 
-      <TouchableOpacity style={signOutButton} onPress={signOutUser}>
-        <Text style={signOutText}>Sign out</Text>
+      <TouchableOpacity
+        style={[{ backgroundColor: COLORS.blue }, button]}
+        onPress={resetPassword}
+      >
+        <Text style={buttonText}>Reset your password</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[{ backgroundColor: "red" }, button]}
+        onPress={signOutUser}
+      >
+        <Text style={buttonText}>Sign out</Text>
       </TouchableOpacity>
     </View>
   );
