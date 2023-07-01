@@ -42,4 +42,10 @@ export const accountStyles = StyleSheet.create({
     fontSize: 18,
     color: COLORS.blue,
   },
+  joinedText: {
+    paddingBottom: 20,
+    fontFamily: FONTS.medium,
+    fontSize: 16,
+    color: COLORS.grey,
+  },
 });

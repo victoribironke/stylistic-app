@@ -1,4 +1,4 @@
-import { StyleSheet, Platform } from "react-native";
+import { StyleSheet } from "react-native";
 
 export const FONTS = {
   regular: "gt-regular",
@@ -40,7 +40,6 @@ export const dropDownStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
-    // elevation: Platform.OS === "android" ? 5 : 0,
     zIndex: -1,
   },
   containerText: { fontSize: 16, fontFamily: FONTS.medium },

@@ -31,6 +31,34 @@ export const randomString = () => {
   return `id_${new Date().getTime()}`;
 };
 
+export const formatDate = (day: any, month: any, year: any) => {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  let newDay = "";
+  let newMonth = "";
+
+  const dayStr = day.toString();
+  if (dayStr.length === 1) newDay = `0${dayStr}`;
+  else newDay = dayStr;
+
+  newMonth = months[month];
+
+  return [newDay, newMonth, year];
+};
+
 export const validateEmail = (email: string) => {
   const isValid =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(

@@ -1,5 +1,5 @@
 import { StyleSheet, StatusBar } from "react-native";
-import { COLORS, FONTS } from "./general";
+import { FONTS } from "./general";
 
 export const closetItemStyles = StyleSheet.create({
   container: {

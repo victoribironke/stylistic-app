@@ -31,6 +31,7 @@ const Home = () => {
             name: data!.name,
             credits: data!.credits,
             closetItems: data!.closetItems,
+            createdAt: data!.createdAt,
           });
 
           setIsLoading("");

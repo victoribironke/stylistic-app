@@ -9,14 +9,14 @@ export const userState = atom({
     email: "",
     closetItems: [],
     credits: 0,
+    createdAt: "",
   },
 });
 
 export const selectedItemState = atom({
   key: "selected item",
   default: {
-    imageURL:
-      "https://firebasestorage.googleapis.com/v0/b/stylistic-io.appspot.com/o/brennan-burling-ay53qag90W8-unsplash.jpg?alt=media&token=c25f6b83-7eca-49fc-a3bd-c9de39f51d39",
+    imageURL: "",
     colors: [""],
     type: "",
     id: "",

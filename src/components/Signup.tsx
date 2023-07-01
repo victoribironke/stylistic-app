@@ -5,7 +5,7 @@ import { validateEmail } from "../utils/helpers";
 import { useRecoilState } from "recoil";
 import { loginSignupStyles } from "../../styles/login-signup";
 import { profilePlaceholder } from "../utils/image-paths";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Feather } from "@expo/vector-icons";
@@ -47,6 +47,7 @@ const Signup = () => {
           imageURL: profilePlaceholder(fullname),
           credits: 100,
           closetItems: [],
+          createdAt: serverTimestamp(),
         });
 
         await setDoc(doc(db, "user-mappings", user.email!), { uid: user.uid });

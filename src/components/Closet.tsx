@@ -1,11 +1,10 @@
 import Items from "./Items";
 import NoItems from "./NoItems";
 import { userState } from "../atoms/atoms";
-import { clothData } from "../utils/data";
 import { AntDesign } from "@expo/vector-icons";
 import { homeStyles } from "../../styles/home";
 import { useNavigation } from "@react-navigation/native";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { Text, TouchableOpacity, View } from "react-native";
 
 const Closet = () => {
@@ -19,7 +18,7 @@ const Closet = () => {
   } = homeStyles;
   const { navigate } = useNavigation();
 
-  const [{ closetItems }, setItems] = useRecoilState(userState);
+  const { closetItems } = useRecoilValue(userState);
 
   return (
     <View style={closetContainer}>
