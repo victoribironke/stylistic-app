@@ -6,15 +6,18 @@ export const FONTS = {
 };
 
 export const COLORS = {
-  primary: "#FFEF00",
-  blue: "#3F5EFB",
-  purple: "#E142D3",
-  pink: "#FF4D9A",
-  orange: "#FFC353",
   green: "#16A34A",
-  deepOrange: "#FF8769",
-  grey: "#808080",
-  gray: "#f2f2f2",
+  gray: "#d1d5db",
+  primary: "#710193",
+  primary100: "#61087d",
+  primary200: "#4a0e5d",
+  primary300: "#2d1235",
+  primary400: "#140e16",
+  purpleLight: "#fe95e2",
+  regular: "#9f39fe",
+  black: "#000000",
+  white: "#ffffff",
+  red: "#ff0000",
 };
 
 export const otherHeaderStyles = StyleSheet.create({
@@ -24,7 +27,11 @@ export const otherHeaderStyles = StyleSheet.create({
     alignItems: "center",
     gap: 15,
   },
-  otherHeaderText: { fontFamily: FONTS.medium, fontSize: 22 },
+  otherHeaderText: {
+    fontFamily: FONTS.medium,
+    fontSize: 22,
+    color: COLORS.white,
+  },
 });
 
 export const dropDownStyles = StyleSheet.create({
@@ -36,17 +43,21 @@ export const dropDownStyles = StyleSheet.create({
     gap: 18,
     paddingVertical: 10,
     borderWidth: 1,
-    borderColor: COLORS.grey,
+    borderColor: COLORS.gray,
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
     zIndex: -1,
   },
-  containerText: { fontSize: 16, fontFamily: FONTS.medium },
+  containerText: {
+    fontSize: 16,
+    fontFamily: FONTS.medium,
+    color: COLORS.white,
+  },
   dropDown: {
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: COLORS.grey,
+    borderColor: COLORS.gray,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
@@ -69,12 +80,13 @@ export const formStyles = StyleSheet.create({
   formView: { width: "80%", gap: 10 },
   input: {
     borderWidth: 1,
-    borderColor: COLORS.blue,
+    borderColor: COLORS.white,
     width: "100%",
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 8,
     fontFamily: FONTS.medium,
     fontSize: 18,
+    color: COLORS.white,
   },
 });

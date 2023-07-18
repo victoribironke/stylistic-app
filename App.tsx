@@ -26,14 +26,14 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="Home Screen"
-            component={Home}
-            options={{ headerShown: false, animation: "slide_from_right" }}
-          />
-          <Stack.Screen
             name="Login Signup"
             component={LoginSignup}
             options={{ headerShown: false, animation: "slide_from_left" }}
+          />
+          <Stack.Screen
+            name="Home Screen"
+            component={Home}
+            options={{ headerShown: false, animation: "slide_from_right" }}
           />
           <Stack.Screen
             name="Suggestions"

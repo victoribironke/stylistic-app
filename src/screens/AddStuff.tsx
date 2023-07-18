@@ -18,6 +18,7 @@ import { closetItemStyles } from "../../styles/closet-item";
 import Select from "../components/Select";
 import { clothingTypes, subtypes } from "../utils/clothing";
 import { doc, setDoc, arrayUnion } from "firebase/firestore";
+import { COLORS, FONTS } from "../../styles/general";
 
 const AddStuff = () => {
   const [image, setImage] = useState("");
@@ -142,7 +143,17 @@ const AddStuff = () => {
         <Text style={errorText}>Error uploading your image...</Text>
       )}
 
-      {status.uploading && <Text style={loadingText}>{status.uploading}</Text>}
+      {status.uploading && (
+        <Text
+          style={{
+            color: COLORS.white,
+            fontSize: 16,
+            fontFamily: FONTS.medium,
+          }}
+        >
+          {status.uploading}
+        </Text>
+      )}
 
       {image && !status.uploaded && (
         <TouchableOpacity

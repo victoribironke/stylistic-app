@@ -9,9 +9,10 @@ export const addStuffStyles = StyleSheet.create({
     marginTop: StatusBar.currentHeight,
     gap: 15,
     alignItems: "center",
+    backgroundColor: COLORS.black,
   },
   button: {
-    backgroundColor: COLORS.blue,
+    backgroundColor: COLORS.primary,
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: "center",

@@ -14,7 +14,7 @@ const OtherHeader = ({ title }: OtherHeaderProps) => {
       <MaterialIcons
         name="keyboard-arrow-left"
         size={42}
-        color="black"
+        color="white"
         onPress={goBack}
       />
 

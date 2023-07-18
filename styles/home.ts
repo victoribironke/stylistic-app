@@ -8,6 +8,7 @@ export const homeStyles = StyleSheet.create({
     padding: 12,
     marginTop: StatusBar.currentHeight,
     gap: 15,
+    backgroundColor: COLORS.black,
   },
   header: {
     justifyContent: "center",
@@ -21,8 +22,10 @@ export const homeStyles = StyleSheet.create({
   welcomeText: {
     fontFamily: FONTS.regular,
     fontSize: 18,
+    color: COLORS.white,
   },
   nameText: {
+    color: COLORS.white,
     fontFamily: FONTS.medium,
     fontSize: 20,
   },
@@ -41,14 +44,16 @@ export const homeStyles = StyleSheet.create({
   },
   creditAmount: {
     fontFamily: FONTS.medium,
+    color: COLORS.white,
     fontSize: 30,
   },
   creditText: {
     fontFamily: FONTS.regular,
+    color: COLORS.white,
     fontSize: 16,
   },
   buyCredits: {
-    backgroundColor: COLORS.blue,
+    backgroundColor: COLORS.primary,
     borderRadius: 8,
     paddingHorizontal: 15,
     paddingVertical: 10,
@@ -69,6 +74,7 @@ export const homeStyles = StyleSheet.create({
     fontFamily: FONTS.medium,
     fontSize: 23,
     marginRight: "auto",
+    color: COLORS.white,
   },
   closetContainer: {
     flexDirection: "column",
@@ -83,7 +89,7 @@ export const homeStyles = StyleSheet.create({
     justifyContent: "center",
     gap: 20,
   },
-  noItemsText: { fontFamily: FONTS.regular, fontSize: 18 },
+  noItemsText: { fontFamily: FONTS.regular, fontSize: 18, color: COLORS.white },
   suggestions: {
     backgroundColor: COLORS.green,
     borderRadius: 8,
@@ -112,7 +118,7 @@ export const homeStyles = StyleSheet.create({
   },
   itemView: {
     borderWidth: 1,
-    borderColor: COLORS.blue,
+    borderColor: COLORS.white,
     padding: 6,
     gap: 8,
     borderRadius: 10,
@@ -135,6 +141,7 @@ export const homeStyles = StyleSheet.create({
   typeText: {
     fontFamily: FONTS.regular,
     fontSize: 16,
+    color: COLORS.white,
   },
   scrollItemView: { gap: 8, marginBottom: 15 },
   scrollView: {
@@ -143,5 +150,6 @@ export const homeStyles = StyleSheet.create({
   scrollItemText: {
     fontFamily: FONTS.medium,
     fontSize: 20,
+    color: COLORS.white,
   },
 });

@@ -1,4 +1,5 @@
 import { StyleSheet, StatusBar } from "react-native";
+import { COLORS } from "./general";
 
 export const suggestionStyles = StyleSheet.create({
   container: {
@@ -7,5 +8,6 @@ export const suggestionStyles = StyleSheet.create({
     paddingHorizontal: 14,
     marginTop: StatusBar.currentHeight,
     gap: 24,
+    backgroundColor: COLORS.black,
   },
 });

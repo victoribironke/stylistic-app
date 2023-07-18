@@ -73,6 +73,7 @@ const Login = () => {
           style={input}
           value={email}
           onChangeText={(text) => setEmail(text)}
+          placeholderTextColor={COLORS.gray}
         />
         <View style={passwordView}>
           <TextInput
@@ -81,11 +82,12 @@ const Login = () => {
             value={password}
             onChangeText={(text) => setPassword(text)}
             secureTextEntry={!viewPassword}
+            placeholderTextColor={COLORS.gray}
           />
           <Feather
             name={!viewPassword ? "eye" : "eye-off"}
             size={24}
-            color={COLORS.blue}
+            color={COLORS.white}
             style={passwordIcon}
             onPress={() => setViewPassword((prev) => !prev)}
           />

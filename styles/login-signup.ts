@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import { COLORS, FONTS } from "./general";
 
 export const loginSignupStyles = StyleSheet.create({
@@ -7,37 +7,39 @@ export const loginSignupStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 24,
+    marginTop: StatusBar.currentHeight,
+    backgroundColor: COLORS.black,
   },
   footer: {
     justifyContent: "center",
     flexDirection: "row",
-    gap: 6,
+    alignItems: "center",
+    gap: 10,
   },
-  footerText: { fontSize: 18 },
+  footerText: { fontSize: 18, color: COLORS.white },
   footerButton: {
-    borderBottomColor: COLORS.blue,
-    borderBottomWidth: 1,
-    paddingBottom: 2,
-    paddingHorizontal: 2,
+    padding: 8,
+    borderRadius: 8,
+    backgroundColor: COLORS.primary,
   },
   passwordView: { alignItems: "center", justifyContent: "center" },
   passwordIcon: { position: "absolute", right: 15 },
   actionButton: {
-    backgroundColor: "white",
+    backgroundColor: COLORS.primary,
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
   },
-  actionText: { fontFamily: FONTS.medium, fontSize: 18 },
+  actionText: { fontFamily: FONTS.medium, fontSize: 18, color: COLORS.white },
   errorText: {
-    color: "red",
+    color: COLORS.red,
     fontSize: 16,
     fontFamily: FONTS.medium,
   },
   loadingText: {
-    color: COLORS.blue,
+    color: COLORS.white,
     fontSize: 16,
     fontFamily: FONTS.medium,
   },
@@ -48,9 +50,9 @@ export const loginSignupStyles = StyleSheet.create({
     width: "80%",
   },
   forgotButton: {
-    borderBottomColor: COLORS.blue,
-    borderBottomWidth: 1,
-    paddingBottom: 2,
+    backgroundColor: COLORS.primary,
+    borderRadius: 8,
+    padding: 10,
   },
-  forgotText: { fontFamily: FONTS.regular, fontSize: 16 },
+  forgotText: { fontFamily: FONTS.regular, fontSize: 16, color: COLORS.white },
 });

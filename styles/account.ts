@@ -9,6 +9,7 @@ export const accountStyles = StyleSheet.create({
     marginTop: StatusBar.currentHeight,
     gap: 24,
     alignItems: "center",
+    backgroundColor: COLORS.black,
   },
   detailsView: {
     gap: 20,
@@ -24,10 +25,12 @@ export const accountStyles = StyleSheet.create({
   nameText: {
     fontFamily: FONTS.medium,
     fontSize: 20,
+    color: COLORS.white,
   },
   emailText: {
     fontFamily: FONTS.regular,
     fontSize: 16,
+    color: COLORS.white,
   },
   button: {
     paddingVertical: 14,
@@ -40,12 +43,12 @@ export const accountStyles = StyleSheet.create({
   messageText: {
     fontFamily: FONTS.medium,
     fontSize: 18,
-    color: COLORS.blue,
+    color: COLORS.white,
   },
   joinedText: {
     paddingBottom: 20,
     fontFamily: FONTS.medium,
     fontSize: 16,
-    color: COLORS.grey,
+    color: COLORS.gray,
   },
 });

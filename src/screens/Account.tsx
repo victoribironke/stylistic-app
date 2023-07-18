@@ -1,20 +1,19 @@
 import OtherHeader from "../components/OtherHeader";
 import { auth } from "../firebase/firebase";
 import { userState } from "../atoms/atoms";
-import { homeStyles } from "../../styles/home";
 import { accountStyles } from "../../styles/account";
 import { sendPasswordResetEmail, signOut } from "firebase/auth";
-import { FieldValue, Firestore } from "firebase/firestore";
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import { COLORS } from "../../styles/general";
 import { useState } from "react";
 import { formatDate } from "../utils/helpers";
+import { CommonActions, useNavigation } from "@react-navigation/native";
 
 const Account = () => {
   const [message, setMessage] = useState("");
   const userData = useRecoilValue(userState);
-  const resetUserState = useResetRecoilState(userState);
+  const { dispatch } = useNavigation();
 
   const {
     container,
@@ -27,7 +26,6 @@ const Account = () => {
     joinedText,
     messageText,
   } = accountStyles;
-  const { profileImage } = homeStyles;
 
   const imageURI = {
     uri: userData.imageURL,
@@ -45,8 +43,21 @@ const Account = () => {
   };
 
   const signOutUser = () => {
-    resetUserState();
     signOut(auth);
+
+    dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [
+          { name: "Login Signup" },
+          { name: "Home Screen" },
+          { name: "Suggestions" },
+          { name: "Account" },
+          { name: "Add Stuff" },
+          { name: "Closet Item" },
+        ],
+      })
+    );
   };
 
   const resetPassword = async () => {
@@ -61,7 +72,7 @@ const Account = () => {
       <OtherHeader title="Account" />
 
       <View style={detailsView}>
-        <Image source={imageURI} style={profileImage} />
+        <Image source={imageURI} style={{ width: 40, height: 40 }} />
         <View style={textView}>
           <Text style={nameText}>{userData.name}</Text>
           <Text style={emailText}>{userData.email}</Text>
@@ -71,14 +82,14 @@ const Account = () => {
       {message && <Text style={messageText}>{message}</Text>}
 
       <TouchableOpacity
-        style={[{ backgroundColor: COLORS.blue }, button]}
+        style={[{ backgroundColor: COLORS.regular }, button]}
         onPress={resetPassword}
       >
         <Text style={buttonText}>Reset your password</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[{ backgroundColor: "red", marginBottom: "auto" }, button]}
+        style={[{ backgroundColor: COLORS.red, marginBottom: "auto" }, button]}
         onPress={signOutUser}
       >
         <Text style={buttonText}>Sign out</Text>
