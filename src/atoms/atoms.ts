@@ -16,11 +16,16 @@ export const userState = atom({
 export const selectedItemState = atom({
   key: "selected item",
   default: {
-    imageURL: "",
-    colors: [""],
     type: "",
-    id: "",
     subtype: "",
+    sleeve: "",
+    fabric: "",
+    cut: "",
+    waist: "",
+    pattern: "",
+    id: "",
+    colors: [""],
+    neck: "",
   },
 });
 
@@ -29,7 +34,18 @@ export const loadingState = atom({
   default: "",
 });
 
-export const currentTypeState = atom({
-  key: "types",
-  default: { type: "Select type", subtype: "Select subtype" },
+export const selectionState = atom({
+  key: "selections",
+  default: {
+    type: "",
+    subtype: "",
+    sleeve: "",
+    fabric: "",
+    cut: "",
+    waist: "",
+    pattern: "",
+    mainColor: "",
+    accentColors: [""],
+    neck: "",
+  },
 });

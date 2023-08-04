@@ -16,12 +16,17 @@ const ScrollViewItem = ({ data, text }: ScrollViewItemProps) => {
       >
         {data.map((item, i) => (
           <Item
-            colors={item.colors}
-            imageURL={item.imageURL}
+            cut={item.cut}
+            fabric={item.fabric}
+            pattern={item.pattern}
+            sleeve={item.sleeve}
+            waist={item.waist}
             subtype={item.subtype}
             type={item.type}
             id={item.id}
+            neck={item.neck}
             key={i}
+            colors={item.colors}
           />
         ))}
       </ScrollView>

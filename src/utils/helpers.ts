@@ -1,29 +1,23 @@
 import { ItemProps } from "../types/general";
 
 export const splitArr = (arr: ItemProps[]) => {
-  const topsArr: ItemProps[] = [];
-  const socksArr: ItemProps[] = [];
-  const shortsArr: ItemProps[] = [];
+  const shirtsArr: ItemProps[] = [];
+  const layersArr: ItemProps[] = [];
   const trousersArr: ItemProps[] = [];
   const footwearArr: ItemProps[] = [];
-  const headwearArr: ItemProps[] = [];
 
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i].type === "Top") topsArr.push(arr[i]);
-    else if (arr[i].type === "Socks") socksArr.push(arr[i]);
-    else if (arr[i].type === "Shorts") shortsArr.push(arr[i]);
-    else if (arr[i].type === "Trousers") trousersArr.push(arr[i]);
+    if (arr[i].type === "Shirt") shirtsArr.push(arr[i]);
+    else if (arr[i].type === "Layer") layersArr.push(arr[i]);
+    else if (arr[i].type === "Trouser") trousersArr.push(arr[i]);
     else if (arr[i].type === "Footwear") footwearArr.push(arr[i]);
-    else if (arr[i].type === "Headwear") headwearArr.push(arr[i]);
   }
 
   return {
-    topsArr,
-    socksArr,
-    shortsArr,
+    shirtsArr,
+    layersArr,
     trousersArr,
     footwearArr,
-    headwearArr,
   };
 };
 
@@ -70,4 +64,48 @@ export const validateEmail = (email: string) => {
 
 export const rgbToHex = (r: number, g: number, b: number): string => {
   return "#" + [r, g, b].map((x) => x.toString(16).padStart(2, "0")).join("");
+};
+
+export const getIcon = (
+  type: string,
+  subtype: string,
+  sleeve?: string
+): string => {
+  const BASE_URL = "https://stylistic.vercel.app/app-icons";
+  const EXT = ".png";
+
+  if (type === "Footwear") {
+    if (subtype === "Boots") return `${BASE_URL}/footwear/boot${EXT}`;
+    else if (subtype === "Flats") return `${BASE_URL}/footwear/flats${EXT}`;
+    else if (subtype === "Loafers") return `${BASE_URL}/footwear/loafer${EXT}`;
+    else if (subtype === "Mules") return `${BASE_URL}/footwear/mule${EXT}`;
+    else if (subtype === "Oxfords") return `${BASE_URL}/footwear/oxford${EXT}`;
+    else if (subtype === "Platform")
+      return `${BASE_URL}/footwear/platform${EXT}`;
+    else if (subtype === "Sandals") return `${BASE_URL}/footwear/sandal${EXT}`;
+    else if (subtype === "Slip-on") return `${BASE_URL}/footwear/slip-on${EXT}`;
+    else if (subtype === "Sneakers")
+      return `${BASE_URL}/footwear/sneakers${EXT}`;
+    else if (subtype === "Wedge") return `${BASE_URL}/footwear/wedge${EXT}`;
+  } else if (type === "Layer") {
+    if (subtype === "Blazer") return `${BASE_URL}/layers/blazer${EXT}`;
+    else if (subtype === "Hoodie") return `${BASE_URL}/layers/hoodie${EXT}`;
+    else if (subtype === "Jacket") return `${BASE_URL}/layers/jacket${EXT}`;
+    else if (subtype === "Sweater" || subtype === "Sweatshirt")
+      return `${BASE_URL}/layers/sweater${EXT}`;
+  } else if (type === "Shirt") {
+    if (subtype === "Button-up") {
+      if (sleeve === "Long-sleeve")
+        return `${BASE_URL}/shirts/button-up-long-sleeve${EXT}`;
+      else return `${BASE_URL}/shirts/button-up-short-sleeve${EXT}`;
+    } else if (subtype === "Polo") return `${BASE_URL}/shirts/polo${EXT}`;
+    else if (subtype === "T-shirt") return `${BASE_URL}/shirts/tshirt${EXT}`;
+  } else if (type === "Trouser") {
+    if (subtype === "Shorts") return `${BASE_URL}/trousers/shorts${EXT}`;
+    else if (subtype === "Sweatpants")
+      return `${BASE_URL}/trousers/sweatpants${EXT}`;
+    else return `${BASE_URL}/trousers/trousers${EXT}`;
+  }
+
+  return "";
 };

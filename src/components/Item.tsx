@@ -3,29 +3,73 @@ import { homeStyles } from "../../styles/home";
 import { selectedItemState } from "../atoms/atoms";
 import { useNavigation } from "@react-navigation/native";
 import { useSetRecoilState } from "recoil";
-import { Image, Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
+import { getIcon } from "../utils/helpers";
 
-const Item = ({ imageURL, colors, subtype, type, id }: ItemProps) => {
-  const { itemView, itemImage, color, colorsView, typeText } = homeStyles;
-  const imageURI = { uri: imageURL };
+const Item = ({
+  cut,
+  colors,
+  subtype,
+  type,
+  id,
+  fabric,
+  pattern,
+  sleeve,
+  neck,
+  waist,
+}: ItemProps) => {
+  const {
+    itemView,
+    colorStyle,
+    colorView,
+    typeText,
+    itemImage,
+    imageView,
+    itemTop,
+  } = homeStyles;
   const setSelectedItem = useSetRecoilState(selectedItemState);
-
   const { navigate } = useNavigation();
 
   const goToItem = () => {
-    setSelectedItem({ colors, imageURL, subtype, type, id });
+    setSelectedItem({
+      cut,
+      colors,
+      subtype,
+      type,
+      id,
+      fabric,
+      pattern,
+      sleeve,
+      neck,
+      waist,
+    });
     navigate("Closet Item");
   };
 
   return (
     <TouchableOpacity style={itemView} onPress={goToItem}>
-      <Image source={imageURI} style={itemImage} />
-      <View style={color}>
-        {colors.map((color, i) => (
-          <View style={[{ backgroundColor: color }, colorsView]} key={i}></View>
-        ))}
-      </View>
+      <View style={itemTop}>
+        <View style={imageView}>
+          <Image
+            source={{ uri: getIcon(type, subtype, sleeve) }}
+            style={itemImage}
+          />
+        </View>
 
+        <View style={colorView}>
+          {colors.map((color, i) => (
+            <View
+              style={[
+                {
+                  backgroundColor: color,
+                },
+                colorStyle,
+              ]}
+              key={i}
+            ></View>
+          ))}
+        </View>
+      </View>
       <Text style={typeText}>{subtype}</Text>
     </TouchableOpacity>
   );

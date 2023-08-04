@@ -8,6 +8,7 @@ import { RecoilRoot } from "recoil";
 import AddStuff from "./src/screens/AddStuff";
 import ClosetItem from "./src/screens/ClosetItem";
 import LoginSignup from "./src/screens/LoginSignup";
+import ColorSelection from "./src/screens/ColorSelection";
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +55,15 @@ const App = () => {
             name="Closet Item"
             options={{ headerShown: false, animation: "fade_from_bottom" }}
             component={ClosetItem}
+          />
+          <Stack.Screen
+            name="Color Selection"
+            options={{
+              headerShown: false,
+              animation: "fade_from_bottom",
+              presentation: "containedTransparentModal",
+            }}
+            component={ColorSelection}
           />
         </Stack.Navigator>
       </NavigationContainer>
