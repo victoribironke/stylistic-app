@@ -1,9 +1,14 @@
 export type ItemProps = {
-  colors: string[];
   type: string;
   subtype: string;
-  imageURL: string;
   id: string;
+  sleeve: string;
+  fabric: string;
+  cut: string;
+  waist: string;
+  pattern: string;
+  neck: string;
+  colors: string[];
 };
 
 export type ItemsProps = {
@@ -26,11 +31,21 @@ export type CreditCategoryProps = {
 
 export type SelectProps = {
   arr: string[];
-  selectedIndex: number; // it means the index of the default item in the array
-  type: boolean;
+  title: string;
+  stateToCheck: string; // this is the state to cross-check with to change the background
+  action: (s: string) => void;
 };
 
 export type ImageDataRes = {
   colors: { red: number; blue: number; green: number; alpha?: number }[];
   labels: string[];
 };
+
+export type ColorSelectionProps = {
+  stateToCheck?: string; // this is the state to cross-check with to change the background
+  title: string;
+  arr: string[];
+  action: () => void;
+};
+
+export type Colors = { name: string; mainColor: string; shades: string[] };

@@ -3,12 +3,9 @@ import { COLORS, FONTS } from "./general";
 
 export const addStuffStyles = StyleSheet.create({
   container: {
-    flex: 1,
     paddingVertical: 12,
     paddingHorizontal: 14,
     marginTop: StatusBar.currentHeight,
-    gap: 15,
-    alignItems: "center",
     backgroundColor: COLORS.black,
   },
   button: {

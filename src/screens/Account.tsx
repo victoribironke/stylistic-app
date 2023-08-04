@@ -9,6 +9,7 @@ import { COLORS } from "../../styles/general";
 import { useState } from "react";
 import { formatDate } from "../utils/helpers";
 import { CommonActions, useNavigation } from "@react-navigation/native";
+import { openBrowserAsync } from "expo-web-browser";
 
 const Account = () => {
   const [message, setMessage] = useState("");
@@ -55,6 +56,7 @@ const Account = () => {
           { name: "Account" },
           { name: "Add Stuff" },
           { name: "Closet Item" },
+          { name: "Color Selection" },
         ],
       })
     );
@@ -64,7 +66,7 @@ const Account = () => {
     await sendPasswordResetEmail(auth, userData.email);
     setMessage("Password reset link sent!");
 
-    setTimeout(() => setMessage(""), 1000);
+    setTimeout(() => setMessage(""), 2000);
   };
 
   return (
@@ -79,6 +81,16 @@ const Account = () => {
         </View>
       </View>
 
+      <TouchableOpacity
+        style={[
+          { backgroundColor: COLORS.green, marginBottom: "auto" },
+          button,
+        ]}
+        onPress={() => openBrowserAsync("https://stylistic.app/discord")}
+      >
+        <Text style={buttonText}>Join the discord community</Text>
+      </TouchableOpacity>
+
       {message && <Text style={messageText}>{message}</Text>}
 
       <TouchableOpacity
@@ -89,7 +101,7 @@ const Account = () => {
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[{ backgroundColor: COLORS.red, marginBottom: "auto" }, button]}
+        style={[{ backgroundColor: COLORS.red }, button]}
         onPress={signOutUser}
       >
         <Text style={buttonText}>Sign out</Text>

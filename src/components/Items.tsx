@@ -6,30 +6,21 @@ import { ItemsProps } from "../types/general";
 
 const Items = ({ data }: ItemsProps) => {
   const { itemsView } = homeStyles;
-  const {
-    topsArr,
-    socksArr,
-    shortsArr,
-    trousersArr,
-    footwearArr,
-    headwearArr,
-  } = splitArr(data);
+  const { trousersArr, footwearArr, layersArr, shirtsArr } = splitArr(data);
 
   return (
     <ScrollView style={itemsView} showsVerticalScrollIndicator={false}>
-      {topsArr.length > 0 && <ScrollViewItem text="Tops" data={topsArr} />}
-      {socksArr.length > 0 && <ScrollViewItem text="Socks" data={socksArr} />}
-      {shortsArr.length > 0 && (
-        <ScrollViewItem text="Shorts" data={shortsArr} />
+      {shirtsArr.length > 0 && (
+        <ScrollViewItem text="Shirts" data={shirtsArr} />
+      )}
+      {layersArr.length > 0 && (
+        <ScrollViewItem text="Layers" data={layersArr} />
       )}
       {trousersArr.length > 0 && (
         <ScrollViewItem text="Trousers" data={trousersArr} />
       )}
       {footwearArr.length > 0 && (
         <ScrollViewItem text="Footwear" data={footwearArr} />
-      )}
-      {headwearArr.length > 0 && (
-        <ScrollViewItem text="Headwear" data={headwearArr} />
       )}
     </ScrollView>
   );

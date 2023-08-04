@@ -17,7 +17,6 @@ export const closetItemStyles = StyleSheet.create({
     justifyContent: "center",
   },
   colorsView: { padding: 20, borderRadius: 100 },
-  image: { width: "90%", aspectRatio: "1/1", borderRadius: 20 },
   typesView: {
     flexDirection: "row",
     alignItems: "center",
@@ -38,4 +37,15 @@ export const closetItemStyles = StyleSheet.create({
     fontFamily: FONTS.regular,
     fontSize: 20,
   },
+  imageView: {
+    width: "70%",
+    aspectRatio: "1/1",
+    backgroundColor: "white",
+    padding: 20,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+  },
+  itemImage: { width: "80%", aspectRatio: "1/1" },
 });

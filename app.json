@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "stylistic",
-    "slug": "stylistic",
+    "name": "Stylistic",
+    "slug": "Stylistic",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#010001"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -18,11 +18,17 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#010001"
+      },
+      "package": "com.victoribironke.stylistic"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4a139d61-cb08-4265-a5a7-e996b7530869"
+      }
     }
   }
 }

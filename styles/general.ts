@@ -34,45 +34,44 @@ export const otherHeaderStyles = StyleSheet.create({
   },
 });
 
-export const dropDownStyles = StyleSheet.create({
+export const selectionStyles = StyleSheet.create({
   selectContainer: { width: "90%", gap: 10 },
-  containerView: {
-    borderRadius: 8,
-    paddingLeft: 12,
-    paddingRight: 8,
-    gap: 18,
-    paddingVertical: 10,
-    borderWidth: 1,
-    borderColor: COLORS.gray,
-    alignItems: "center",
-    justifyContent: "space-between",
-    flexDirection: "row",
-    zIndex: -1,
-  },
-  containerText: {
+  selectionText: {
+    color: COLORS.white,
+    fontFamily: FONTS.regular,
     fontSize: 16,
+  },
+  selectionButton: {
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 10,
+    marginRight: 10,
+  },
+  titleText: {
     fontFamily: FONTS.medium,
+    fontSize: 18,
     color: COLORS.white,
   },
-  dropDown: {
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: COLORS.gray,
+  colorSelectButton: {
+    borderRadius: 500,
+    width: 35,
+    height: 35,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  borderColor: {
+    borderColor: COLORS.white,
+    borderWidth: 2,
+    borderRadius: 500,
+    padding: 2,
+  },
+  mainColorsView: {
+    marginRight: 10,
+    display: "flex",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    paddingVertical: 5,
-    paddingHorizontal: 5,
-    flexWrap: "wrap",
-    gap: 5,
-  },
-  dropDownText: {
-    fontFamily: FONTS.regular,
-    fontSize: 16,
-    padding: 10,
-    textAlign: "center",
-    backgroundColor: "white",
-    borderRadius: 5,
   },
 });
 
